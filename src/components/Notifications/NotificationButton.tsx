@@ -1,7 +1,7 @@
 'use client';
 import { NOTIFICATION_MSG } from '@/consts';
 import { IResNotificationProps } from '@/models/res.model';
-import { Button, Divider, Loader, Popover, Title } from '@mantine/core';
+import { Button, Divider, Loader, Popover, Text, Title } from '@mantine/core';
 import { BiBell } from 'react-icons/bi';
 import NotificationCard from './NotificationCard';
 import { handleReadNotification } from '@/actions/notifications.action';
@@ -49,6 +49,11 @@ export default function NotificationButton({
 						<div className='size-full flex items-center justify-center'>
 							<Loader size={'md'} />
 						</div>
+					)}
+					{notifications.length === 0 && (
+						<Text size='xl' className='w-full text-center'>
+							Không có thông báo nào
+						</Text>
 					)}
 					{notifications.map((notification) => (
 						<NotificationCard
