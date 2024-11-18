@@ -16,12 +16,13 @@ export const getSearchedCars = async (
 	const matchFilter: any = {};
 
 	if (searchParams.region) {
-		matchFilter.region = Number(searchParams.region);
+		matchFilter.region_code = Number(searchParams.region);
 	}
 
 	if (searchParams.make && searchParams.make !== 'all') {
 		matchFilter.make = searchParams.make;
 	}
+	console.log("🚀 ~ matchFilter:", matchFilter)
 
 	let { data: cars } = await supabase
 		.from('cars')

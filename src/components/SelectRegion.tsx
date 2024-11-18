@@ -22,6 +22,7 @@ export function SelectRegion({
       width="50%"
       label={label || 'Tỉnh/ Thành phố'}
       placeholder="Chọn tỉnh/ thành phố"
+      clearable
       searchable
       maxDropdownHeight={280}
       {...rest}

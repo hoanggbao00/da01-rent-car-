@@ -52,7 +52,7 @@ export const Landing = () => {
 									variant='outline'
 									size='lg'
 									leftSection={<FaCalendarAlt />}
-									className='border-white text-white hover:bg-white hover:text-primary !motion-preset-slide-right !motion-duration-1000 motion-delay-500 hover:!motion-preset-confetti '
+									className='border-white text-white hover:text-primary !motion-preset-slide-right !motion-duration-1000 motion-delay-500 hover:!motion-preset-confetti '
 								>
 									Thuê xe ngay
 								</Button>
