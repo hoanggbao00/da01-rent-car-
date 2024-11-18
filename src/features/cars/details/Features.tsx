@@ -42,7 +42,7 @@ export const Features = ({
 				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }} className='!motion-preset-slide-right'>
 					<Card className={classes.mainFeatures} withBorder>
 						<IconUsers />
-						<Text size='xs'>Số ghế</Text>
+						<Text size='xs'>Chỗ ngồi</Text>
 						<Text fw='bold'>{seatingCapacity}</Text>
 					</Card>
 				</Grid.Col>
@@ -97,10 +97,6 @@ export const Features = ({
 				)}
 				<Grid.Col span={{ base: 12, sm: 6 }} className='!motion-preset-slide-up-sm motion-delay-[1200ms]'>
 					<Card withBorder>
-						<Flex gap='md' align='center' my='md'>
-							<GiCarDoor />
-							<Text>{numberOfDoors} Cửa</Text>
-						</Flex>
 						<Divider mb='md' />
 						<Flex gap='md' justify='space-between' align='center' my='md'>
 							<Text>Điều hòa</Text>

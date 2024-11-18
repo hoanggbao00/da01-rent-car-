@@ -1,7 +1,7 @@
 'use client';
 import { NOTIFICATION_MSG } from '@/consts';
 import { IResNotificationProps } from '@/models/res.model';
-import { Button, Divider, Popover, Title } from '@mantine/core';
+import { Button, Divider, Loader, Popover, Title } from '@mantine/core';
 import { BiBell } from 'react-icons/bi';
 import NotificationCard from './NotificationCard';
 import { handleReadNotification } from '@/actions/notifications.action';
@@ -11,17 +11,19 @@ interface Props {
 	is_read: boolean | null;
 	userId: string;
 	setIsRead: React.Dispatch<React.SetStateAction<boolean>>;
+	isLoading: boolean;
 }
 
 export default function NotificationButton({
 	notifications,
 	is_read,
 	userId,
-	setIsRead
+	setIsRead,
+	isLoading,
 }: Props) {
 	const onReadNotification = async () => {
 		await handleReadNotification(userId);
-		setIsRead(true)
+		setIsRead(true);
 	};
 
 	return (
@@ -43,6 +45,11 @@ export default function NotificationButton({
 				</Title>
 				<Divider className='my-2' />
 				<div className='flex flex-col gap-2 md:max-h-[50vh] overflow-y-auto'>
+					{isLoading && (
+						<div className='size-full flex items-center justify-center'>
+							<Loader size={'md'} />
+						</div>
+					)}
 					{notifications.map((notification) => (
 						<NotificationCard
 							key={notification.id}

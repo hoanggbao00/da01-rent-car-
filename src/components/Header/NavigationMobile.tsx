@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 export const NavigationMobile = () => {
 	const [opened, { close, toggle }] = useDisclosure(false);
 	const { session } = useAuthContext();
-	const { notifications, is_read } = useNotifications(session?.user.id);
+	const { notifications, is_read, isLoading } = useNotifications(session?.user.id);
 	const [isRead, setIsRead] = useState(is_read ?? true);
 
 	useEffect(() => {
@@ -44,6 +44,7 @@ export const NavigationMobile = () => {
 						is_read={isRead}
 						userId={session.user.id}
 						setIsRead={setIsRead}
+						isLoading={isLoading}
 					/>
 				)}
 				<Burger

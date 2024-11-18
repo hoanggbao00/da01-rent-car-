@@ -49,7 +49,13 @@ export function ProfileMenu() {
 					justify={'space-between'}
 					className='rounded-full !bg-gray-400/20'
 				>
-					<Avatar src={avatar} radius='xl' size={'sm'} bg={'gray.3'} color={'white'} />
+					<Avatar
+						src={avatar}
+						radius='xl'
+						size={'sm'}
+						bg={'gray.3'}
+						color={'white'}
+					/>
 					<IoChevronDown />
 				</UnstyledButton>
 			</Menu.Target>
@@ -64,13 +70,15 @@ export function ProfileMenu() {
 				>
 					{isProvider ? 'Quản lý phương tiện' : 'Trang cá nhân'}
 				</Menu.Item>
-				<Menu.Item
-					component={Link}
-					href='/my-account/bookings'
-					leftSection={<IoCarSportSharp size='0.8rem' />}
-				>
-					Lịch sử thuê
-				</Menu.Item>
+				{!isProvider && (
+					<Menu.Item
+						component={Link}
+						href='/my-account/bookings'
+						leftSection={<IoCarSportSharp size='0.8rem' />}
+					>
+						Lịch sử thuê
+					</Menu.Item>
+				)}
 				<Menu.Divider />
 				<Menu.Item
 					component='button'

@@ -56,6 +56,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 
 	const handleBookNow = async () => {
 		if (isProvider) return;
+
 		setTriggered(true);
 
 		if (!user?.firstName || !user.lastName || !user?.regions.name) {
@@ -66,7 +67,21 @@ export const BookingDetails = ({ car, user }: Props) => {
 		}
 
 		if (!pickupDate || !returnDate) {
-			return;
+			return toast.warn('Vui lòng nhập ngày nhận và trả phương tiện');
+		}
+
+		const { data: isExist } = await supabase
+			.from('bookings')
+			.select()
+			.eq('user_id', user.id)
+			.eq('car_id', car.id)
+			.eq('status', 'pending')
+			.single();
+
+		if (isExist?.id) {
+			return toast.warn(
+				'Bạn đã tạo yêu cầu thuê xe này, vui lòng chờ phê duyệt.'
+			);
 		}
 
 		const { error } = await supabase
@@ -85,13 +100,13 @@ export const BookingDetails = ({ car, user }: Props) => {
 			.select();
 
 		// Update user is_read
-		const read = supabase
+		await supabase
 			.from('users')
 			.update({ is_read: false })
 			.eq('id', car.provider_id!);
 
-		// Add notification
-		const noti = supabase.from('notifications').insert({
+		// gửi thông báo đến chủ xe
+		await supabase.from('notifications').insert({
 			content: NOTIFICATION_MSG.BOOKING_SENT.key,
 			entity_name: `${car.make} ${car.model}`,
 			path: `/cars/${car.id}`,
@@ -145,7 +160,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 					<SelectDate
 						label='Ngày trả'
 						value={returnDate}
-						minDate={tomorrow}
+						minDate={pickupDate ?? tomorrow}
 						onChange={setReturnDate}
 					/>
 					{triggered && !returnDate && <Input.Error>Chọn ngày</Input.Error>}

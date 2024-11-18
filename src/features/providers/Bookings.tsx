@@ -217,14 +217,16 @@ export const TableRow = ({
 				content: contentNotification,
 				entity_name: `${car[0].make} ${car[0].model}`,
 				path: `/cars/${carId}`,
-				receiver_id: providerId,
-				transfer_id: booking[0].user_id!,
+				receiver_id: booking[0].user_id!,
+				transfer_id: providerId,
 			});
-      
+
 			setStatus(carStatus.status as BookingStatus);
 			toast.info('Yêu cầu thuê xe đã được cập nhật');
 			setIsUpdating(false);
-			refresh();
+			setTimeout(() => {
+				refresh();
+			}, 1000);
 		}
 	};
 
@@ -240,7 +242,7 @@ export const TableRow = ({
 			<Table.Td>{formatDate(pickupDate)}</Table.Td>
 			<Table.Td>{formatDate(returnDate)}</Table.Td>
 			<Table.Td>
-				{ghCurrency} {price}
+				{ghCurrency} {price.toLocaleString()}
 			</Table.Td>
 			<Table.Td width='100px'>
 				{status === 'pending' ? (

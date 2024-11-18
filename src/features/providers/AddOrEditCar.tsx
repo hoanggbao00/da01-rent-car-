@@ -244,7 +244,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					/>
 
 					<NumberInput
-						label='Số ghế'
+						label='Chỗ ngồi'
 						required={!carDetails.seatingCapacity}
 						step={1}
 						min={1}
@@ -259,15 +259,6 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 						min={1}
 						value={carDetails.numberOfBags}
 						onChange={(value) => updateProperty('numberOfBags', value)}
-					/>
-
-					<NumberInput
-						label='Số cửa'
-						required={!carDetails.numberOfDoors}
-						step={1}
-						min={1}
-						value={carDetails.numberOfDoors}
-						onChange={(value) => updateProperty('numberOfDoors', value)}
 					/>
 
 					<Box w='100%'>

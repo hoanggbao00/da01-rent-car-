@@ -60,8 +60,9 @@ interface DashboardProps {
 }
 export const DashboardLayout = ({ children }: DashboardProps) => {
 	const { user, logOut } = useAuthContext();
-	const { notifications, is_read } = useNotifications(user?.id || '');
-	console.log("🚀 ~ DashboardLayout ~ notifications:", notifications)
+	const { notifications, is_read, isLoading } = useNotifications(
+		user?.id || ''
+	);
 	const [opened, setOpened] = useState(false);
 	const theme = useMantineTheme();
 	const { providerDetails } = useProviderDetails(user?.id);
@@ -115,6 +116,7 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 									userId={user?.id}
 									is_read={isRead}
 									setIsRead={setIsRead}
+									isLoading={isLoading}
 								/>
 							)}
 

@@ -21,6 +21,8 @@ export const getNotifications = async (
 		)
 		.eq('receiver_id', user_id);
 
+		console.log(notifications)
+
 	const is_read = await supabase
 		.from('users')
 		.select('is_read')

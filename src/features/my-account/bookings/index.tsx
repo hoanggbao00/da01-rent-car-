@@ -46,7 +46,7 @@ export const Bookings = ({ userId, bookings }: Props) => {
       car={item.cars as any}
       pickupDate={new Date(item.pickupDate)}
       returnDate={new Date(item.returnDate)}
-      price={item.totalPrice}
+      price={item.totalPrice.toLocaleString()}
       status={item.status as BookingStatus}
     />
   ));
@@ -86,7 +86,7 @@ interface TableRowProps {
   car: {id: number, slug: string; make: string; model: string; images: string[] };
   pickupDate: Date;
   returnDate: Date;
-  price: number;
+  price: number | string;
   status: BookingStatus;
 }
 export const TableRow = ({

@@ -1,3 +1,4 @@
+import { StatusRenderer } from '@/components/StatusRenderer';
 import { ghCurrency } from '@/const';
 import { IResCarProps } from '@/models/res.model';
 import { Box, Button, Card, Flex, Image, Text, Title } from '@mantine/core';
@@ -22,8 +23,9 @@ export const CarCard = ({ car }: CardProps) => {
 		>
 			<Flex align='flex-end' justify='space-between'>
 				<Box>
-					<Text fz={'xs'} color='gray.6'>
-						<IconBrandGoogleMaps size={14} /> {car.regions?.name}
+					{car.status && <StatusRenderer status={car.status} />}
+					<Text fz={'xs'} color='gray.6' className='flex items-center gap-1'>
+						<IconBrandGoogleMaps size={12} /> {car.regions?.name}
 					</Text>
 					<Link href={`/cars/${car.id}`}>
 						<Title order={3}>
@@ -31,7 +33,8 @@ export const CarCard = ({ car }: CardProps) => {
 						</Title>
 					</Link>
 					<Text fw='bold' size='md'>
-						{car.pricePerDay?.toLocaleString()}{ghCurrency}/ngày
+						{car.pricePerDay?.toLocaleString()}
+						{ghCurrency}/ngày
 					</Text>
 				</Box>
 			</Flex>
@@ -58,44 +61,39 @@ export const CarCard = ({ car }: CardProps) => {
 					</div>
 				</Link>
 			</Flex>
-				<Flex align='center' gap={'4'} mt={{base: 8, md: 16}} w={'100%'}>
-					<Flex
-						align='center'
-						title='Số ghế'
-						direction={'column'}
-						justify={'center'}
-						style={{ flex: 1 }}
-						gap={6}
-					>
-						<IconUsers size='24px' color='gray' />
-						<Text c='gray.6' size='md' fw={'bold'}>
-							{car.seatingCapacity}
-						</Text>
-					</Flex>
-					<Flex
-						align='center'
-						title='Loại cần số'
-						direction={'column'}
-						gap={6}
-					>
-						<IconManualGearbox size='24px' color='gray' />
-						<Text c='gray.6' size='md' fw={'bold'}>
-							{car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động'}
-						</Text>
-					</Flex>
-					<Flex
-						align='center'
-						title='Loại xăng/dầu'
-						direction={'column'}
-						style={{ flex: 1 }}
-						gap={6}
-					>
-						<BsFuelPump size='24px' color='gray' />
-						<Text c='gray.6' size='md' fw={'bold'}>
-							{car.fuelType}
-						</Text>
-					</Flex>
+			<Flex align='center' gap={'4'} mt={{ base: 8, md: 16 }} w={'100%'}>
+				<Flex
+					align='center'
+					title='Chỗ ngồi'
+					direction={'column'}
+					justify={'center'}
+					style={{ flex: 1 }}
+					gap={6}
+				>
+					<IconUsers size='24px' color='gray' />
+					<Text c='gray.6' size='md' fw={'bold'}>
+						{car.seatingCapacity}
+					</Text>
 				</Flex>
+				<Flex align='center' title='Loại cần số' direction={'column'} gap={6}>
+					<IconManualGearbox size='24px' color='gray' />
+					<Text c='gray.6' size='md' fw={'bold'}>
+						{car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động'}
+					</Text>
+				</Flex>
+				<Flex
+					align='center'
+					title='Loại xăng/dầu'
+					direction={'column'}
+					style={{ flex: 1 }}
+					gap={6}
+				>
+					<BsFuelPump size='24px' color='gray' />
+					<Text c='gray.6' size='md' fw={'bold'}>
+						{car.fuelType}
+					</Text>
+				</Flex>
+			</Flex>
 		</Card>
 	);
 };
