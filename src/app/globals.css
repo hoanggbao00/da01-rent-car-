@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+@import 'react-toastify/dist/ReactToastify.css';
+
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f7fafc17;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgb(255, 102, 0);
+	border-radius: 20px;
+	border: 2px solid rgba(128, 128, 128, 0.199);
+}
+
+.active .nav-item {
+	border-bottom: 2px solid #ff8800 !important;
+}
+
+.mantine-Slider-label {
+	background-color: transparent;
+	color: inherit;
+}
+
+.text-default {
+	color: light-dark(var(--mantine-color-gray-8), var(--mantine-color-gray-1));
+}
+
+.text-muted {
+	color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-gray-4));
+}
+
+.loader {
+	width: 48px;
+	height: 48px;
+	border: 5px solid #fff;
+	border-bottom-color: #ff3d00;
+	border-radius: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes slideUp {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(120%);
+	}
+}
