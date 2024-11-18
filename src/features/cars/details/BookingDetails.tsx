@@ -23,6 +23,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import classes from './Styles.module.css';
 import { useAuthContext } from '@/context/AuthContext';
+import { NOTIFICATION_MSG } from '@/consts';
 
 interface Props {
 	car: IResCarProps;
@@ -54,7 +55,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 	} = useAppContext();
 
 	const handleBookNow = async () => {
-		if(isProvider) return
+		if (isProvider) return;
 		setTriggered(true);
 
 		if (!user?.firstName || !user.lastName || !user?.regions.name) {
@@ -82,6 +83,21 @@ export const BookingDetails = ({ car, user }: Props) => {
 				},
 			])
 			.select();
+
+		// Update user is_read
+		const read = supabase
+			.from('users')
+			.update({ is_read: false })
+			.eq('id', car.provider_id!);
+
+		// Add notification
+		const noti = supabase.from('notifications').insert({
+			content: NOTIFICATION_MSG.BOOKING_SENT.key,
+			entity_name: `${car.make} ${car.model}`,
+			path: `/cars/${car.id}`,
+			receiver_id: car.provider_id!,
+			transfer_id: user.id,
+		});
 
 		if (error) {
 			console.log(error);

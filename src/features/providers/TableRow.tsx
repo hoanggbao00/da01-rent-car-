@@ -26,9 +26,9 @@ export const TableRow = ({ car }: TableRowProps) => {
 		const { error } = await supabase.from('cars').delete().eq('id', carId);
 
 		if (error) {
-			toast.error('Failed to delete car! Try again');
+			toast.error('Có lỗi xảy ra khi xóa phương tiện!');
 		} else {
-			toast.success('Car deleted successfully');
+			toast.success('Xóa phương tiện thành công');
 			refresh();
 		}
 	};

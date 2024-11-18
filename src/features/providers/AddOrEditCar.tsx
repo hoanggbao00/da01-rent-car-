@@ -105,11 +105,12 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 				const clonedDetails = { ...details };
 				delete clonedDetails['id'];
 				delete clonedDetails['created_at'];
+				delete clonedDetails['regions'];
 
 				const { data, error } = await supabase
 					.from('cars')
 					.update(clonedDetails)
-					.eq('id', details.id)
+					.eq('id', Number(details.id))
 					.select();
 
 				if (data) {
@@ -147,7 +148,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 				<Flex direction={'column'} gap={8}>
 					{carDetails.images.length == 0 && (
 						<div className='ml-1.5'>
-							<Avatar src={''} size={'xl'}/>
+							<Avatar src={''} size={'xl'} />
 						</div>
 					)}
 					<div className='w-fit'>

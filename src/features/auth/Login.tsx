@@ -62,7 +62,7 @@ export function Login(props: PaperProps) {
 					}
 
 					setPushing(true);
-					push('/');
+					push('/cars');
 				}
 			}
 		} catch (e) {

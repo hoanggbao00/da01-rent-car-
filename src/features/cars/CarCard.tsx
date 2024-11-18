@@ -31,7 +31,7 @@ export const CarCard = ({ car }: CardProps) => {
 						</Title>
 					</Link>
 					<Text fw='bold' size='md'>
-						{car.pricePerDay?.toLocaleString()} {ghCurrency}/ ngày
+						{car.pricePerDay?.toLocaleString()}{ghCurrency}/ngày
 					</Text>
 				</Box>
 			</Flex>

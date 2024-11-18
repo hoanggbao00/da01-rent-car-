@@ -54,6 +54,7 @@ export const SelectCarType = ({
       required={required}
       nothingFoundMessage="Không tìm thấy"
       filter={optionsFilter}
+      searchable
     />
   );
 };

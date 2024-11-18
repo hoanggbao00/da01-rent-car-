@@ -22,8 +22,8 @@ import { useEffect, useState } from 'react';
 const defaultData = [
 	{
 		key: 'bookings',
-		title: 'Số lượng yêu cầu',
-		icon: <IconAlertCircle />,
+		title: 'Yêu cầu đợi duyệt',
+		icon: <IconAlertCircle color='green'/>,
 		value: 0,
 		color: 'green',
 		path: 'cars'
@@ -31,7 +31,7 @@ const defaultData = [
 	{
 		key: 'cars',
 		title: 'Số lượng xe',
-		icon: <IconCar />,
+		icon: <IconCar color='orange'/>,
 		value: 0,
 		color: 'orange',
 		path: 'cars'
@@ -40,7 +40,7 @@ const defaultData = [
 	{
 		key: 'reviews',
 		title: 'Số lượng đánh giá',
-		icon: <IconMessage2 />,
+		icon: <IconMessage2 color='indigo'/>,
 		value: 0,
 		color: 'indigo',
 		path: 'reviews'
@@ -48,8 +48,8 @@ const defaultData = [
 
 	{
 		key: 'users',
-		title: 'Khách hàng của tôi',
-		icon: <IconUsers />,
+		title: 'Khách hàng đã thuê',
+		icon: <IconUsers color='red'/>,
 		value: 0,
 		color: 'red',
 		path: 'cars'
@@ -62,7 +62,7 @@ interface Props {
 
 export function StatsGrid({ providerId }: Props) {
 	const [data, setData] = useState(defaultData);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const { colorScheme } = useMantineColorScheme();
 	const theme = useMantineTheme();
@@ -76,6 +76,7 @@ export function StatsGrid({ providerId }: Props) {
 				};
 			});
 
+			setLoading(false);
 			setData(newData);
 		};
 		if (providerId) {

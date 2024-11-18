@@ -2,7 +2,6 @@
 import { Box, Flex, Group } from '@mantine/core';
 import React from 'react';
 import { Logo } from './Logo';
-import { ThemeSwitcher } from './ThemeSwitcher';
 import { NavigationMobile } from './NavigationMobile';
 import { AuthButtons } from './AuthButtons';
 import { usePathname } from 'next/navigation';

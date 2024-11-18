@@ -12,6 +12,8 @@ import { ProfileMenu } from '../ProfileMenu';
 import Link from 'next/link';
 import { useAuthContext } from '@/context/AuthContext';
 import { IoChevronDown } from 'react-icons/io5';
+import NotificationButton from '../Notifications/NotificationButton';
+import { useNotifications } from '@/hooks/useNotifications';
 
 export const AuthButtons = () => {
 	const smallScreen = useMediaQuery(`(max-width: 991px)`);
@@ -32,7 +34,13 @@ export const AuthButtons = () => {
 							justify={'space-between'}
 							className='rounded-full !bg-gray-400/20'
 						>
-							<Avatar src={''} radius='xl' size={'sm'} bg={'gray.3'} color={'white'}/>
+							<Avatar
+								src={''}
+								radius='xl'
+								size={'sm'}
+								bg={'gray.3'}
+								color={'white'}
+							/>
 							<IoChevronDown />
 						</UnstyledButton>
 					</Menu.Target>
@@ -54,7 +62,9 @@ export const AuthButtons = () => {
 					</Menu.Dropdown>
 				</Menu>
 			) : (
-				<ProfileMenu />
+				<>
+					<ProfileMenu />
+				</>
 			)}
 		</Group>
 	);

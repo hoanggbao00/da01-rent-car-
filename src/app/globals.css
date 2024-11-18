@@ -4,7 +4,6 @@
 @import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
 @import 'react-toastify/dist/ReactToastify.css';
 
-
 body {
 	display: flex;
 	flex-direction: column;
@@ -51,6 +50,10 @@ body {
 	display: inline-block;
 	box-sizing: border-box;
 	animation: rotation 1s linear infinite;
+}
+
+.motion-loop {
+	animation-iteration-count: var(--motion-loop-count);
 }
 
 @keyframes rotation {

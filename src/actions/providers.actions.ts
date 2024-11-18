@@ -21,7 +21,7 @@ export const getProviderCars = async (user: User): Promise<IResCarProps[]> => {
 		.eq('provider_id', user.id);
 
 	if (error || cars == null) {
-		throw new Error('Failed to load cars');
+		return []
 	}
 	return cars as IResCarProps[];
 };
@@ -33,11 +33,12 @@ export const getProviderReviews = async (
 
 	let { data: reviews, error } = await supabase
 		.from('reviews')
-		.select('*, users(firstName, lastName)')
+		.select('*, users(firstName, lastName), cars(id, make, model)')
 		.eq('provider_id', user.id);
 
+
 	if (error || reviews == null) {
-		throw new Error('Failed to load reviews');
+		return []
 	}
 
 	return reviews as unknown as IResReviewProps[];
@@ -68,7 +69,8 @@ export const getProviderStats = async (providerId: string) => {
 	const { data: bookings } = await supabase
 		.from('bookings')
 		.select('id')
-		.eq('provider_id', providerId);
+		.eq('provider_id', providerId)
+		.eq('status', 'pending');
 
 	// Get total number of cars
 	const { data: cars } = await supabase

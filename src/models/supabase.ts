@@ -304,6 +304,7 @@ export type Database = {
 					lastName: string | null;
 					phone: string | null;
 					region_code: number | null;
+					is_read: boolean | null;
 				};
 				Insert: {
 					avatar?: string | null;
@@ -328,6 +329,7 @@ export type Database = {
 					lastName?: string | null;
 					phone?: string | null;
 					region_code?: number | null;
+					is_read: boolean | null;
 				};
 				Relationships: [
 					{
@@ -346,6 +348,47 @@ export type Database = {
 					}
 				];
 			};
+			notifications: {
+				Row: {
+					id: number;
+					created_at: string;
+					transfer_id: string;
+					receiver_id: string;
+					content: string;
+					path: string | null;
+					entity_name: string
+				};
+				Insert: {
+					transfer_id: string;
+					receiver_id: string;
+					content: string;
+					path: string | null;
+					entity_name: string
+				};
+				Update: {
+					transfer_id: string;
+					receiver_id: string;
+					content: string;
+					path: string | null;
+					entity_name: string
+				};
+				Relationships: [
+					{
+						foreignKeyName: 'notifications_transfer_id_fkey1';
+						columns: ['transfer_id'];
+						isOneToOne: false;
+						referencedRelation: 'users';
+						referencedColumns: ['id'];
+					},
+					{
+						foreignKeyName: 'notifications_receiver_id_fkey1';
+						columns: ['receiver_id'];
+						isOneToOne: false;
+						referencedRelation: 'users';
+						referencedColumns: ['id'];
+					}
+				];
+			}
 		};
 		Views: {
 			[_ in never]: never;

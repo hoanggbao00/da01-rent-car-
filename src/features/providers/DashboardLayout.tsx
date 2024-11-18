@@ -21,18 +21,14 @@ import {
 	IconMessage,
 	IconUser,
 } from '@tabler/icons-react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { MainLink } from './MainLink';
 import { BiLogOutCircle } from 'react-icons/bi';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useNotifications } from '@/hooks/useNotifications';
+import NotificationButton from '@/components/Notifications/NotificationButton';
 
 const data = [
-	{
-		icon: <IconHome size='1rem' />,
-		color: 'yellow',
-		label: 'Trang chủ',
-		endpoint: '../../cars',
-	},
 	{
 		icon: <IconDashboard size='1rem' />,
 		color: 'blue',
@@ -48,8 +44,14 @@ const data = [
 	{
 		icon: <IconMessage size='1rem' />,
 		color: 'orange',
-		label: 'Đánh giá của tôi',
+		label: 'Các bài đánh giá',
 		endpoint: 'reviews',
+	},
+	{
+		icon: <IconHome size='1rem' />,
+		color: 'yellow',
+		label: 'Trang chính',
+		endpoint: '../../cars',
 	},
 ];
 
@@ -58,13 +60,21 @@ interface DashboardProps {
 }
 export const DashboardLayout = ({ children }: DashboardProps) => {
 	const { user, logOut } = useAuthContext();
+	const { notifications, is_read } = useNotifications(user?.id || '');
+	console.log("🚀 ~ DashboardLayout ~ notifications:", notifications)
 	const [opened, setOpened] = useState(false);
 	const theme = useMantineTheme();
 	const { providerDetails } = useProviderDetails(user?.id);
+	const router = useRouter();
+	const [isRead, setIsRead] = useState(is_read ?? false);
+
+	useEffect(() => {
+		setIsRead(is_read ?? false);
+	}, [isRead]);
 
 	const handleSignOut = async () => {
 		await logOut();
-		redirect('/login');
+		router.push('/cars');
 	};
 
 	return (
@@ -97,7 +107,19 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 							</Flex>
 						</Flex>
 
-						<ThemeSwitcher />
+						{/* Thông báo */}
+						<div className='flex items-center gap-2'>
+							{user && (
+								<NotificationButton
+									notifications={notifications ?? []}
+									userId={user?.id}
+									is_read={isRead}
+									setIsRead={setIsRead}
+								/>
+							)}
+
+							<ThemeSwitcher />
+						</div>
 					</Flex>
 				</AppShell.Header>
 
@@ -117,7 +139,13 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 					</AppShell.Section>
 
 					<AppShell.Section>
-						<Flex align='center' onClick={handleSignOut} px={'xs'} py={'xs'} className='hover:bg-gray-500/10 rounded-md cursor-pointer'>
+						<Flex
+							align='center'
+							onClick={handleSignOut}
+							px={'xs'}
+							py={'xs'}
+							className='hover:bg-gray-500/10 rounded-md cursor-pointer'
+						>
 							<ActionIcon color='red'>
 								<BiLogOutCircle size='1.2rem' />
 							</ActionIcon>

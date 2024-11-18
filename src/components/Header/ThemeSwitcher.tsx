@@ -10,7 +10,7 @@ export function ThemeSwitcher() {
 
 	return (
 		<Group justify='center'>
-			<div className='flex flex-col justify-center ml-3'>
+			<div className='flex flex-col justify-center'>
 				<div
 					className='relative cursor-pointer p-2 bg-gray-500/10 rounded-lg'
 					onClick={handleSwitchTheme}
