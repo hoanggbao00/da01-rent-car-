@@ -77,18 +77,6 @@ export const CarList = ({ cars }: CarListProps) => {
 					{visibleCars.map((car) => (
 						<CarCard key={car.id} car={car} />
 					))}
-					{visibleCars.map((car) => (
-						<CarCard key={car.id} car={car} />
-					))}
-					{visibleCars.map((car) => (
-						<CarCard key={car.id} car={car} />
-					))}
-					{visibleCars.map((car) => (
-						<CarCard key={car.id} car={car} />
-					))}
-					{visibleCars.map((car) => (
-						<CarCard key={car.id} car={car} />
-					))}
 				</Flex>
 			)}
 
