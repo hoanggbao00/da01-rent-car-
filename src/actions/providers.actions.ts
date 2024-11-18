@@ -1,62 +1,97 @@
 'use server';
 
 import {
-  IResCarProps,
-  IResProviderProps,
-  IResReviewProps,
+	IResCarProps,
+	IResProviderProps,
+	IResReviewProps,
 } from '@/models/res.model';
 import { Database } from '@/models/supabase';
 import {
-  User,
-  createServerComponentClient,
+	User,
+	createServerComponentClient,
 } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 export const getProviderCars = async (user: User): Promise<IResCarProps[]> => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+	const supabase = createServerComponentClient<Database>({ cookies });
 
-  let { data: cars, error } = await supabase
-    .from('cars')
-    .select('*, regions(code, name)')
-    .eq('provider_id', user.id);
+	let { data: cars, error } = await supabase
+		.from('cars')
+		.select('*, regions(code, name)')
+		.eq('provider_id', user.id);
 
-  if (error || cars == null) {
-    throw new Error('Failed to load cars');
-  }
-  return cars as IResCarProps[];
+	if (error || cars == null) {
+		throw new Error('Failed to load cars');
+	}
+	return cars as IResCarProps[];
 };
 
 export const getProviderReviews = async (
-  user: User
+	user: User
 ): Promise<IResReviewProps[]> => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+	const supabase = createServerComponentClient<Database>({ cookies });
 
-  let { data: reviews, error } = await supabase
-    .from('reviews')
-    .select('*, users(firstName, lastName)')
-    .eq('provider_id', user.id);
+	let { data: reviews, error } = await supabase
+		.from('reviews')
+		.select('*, users(firstName, lastName)')
+		.eq('provider_id', user.id);
 
-  if (error || reviews == null) {
-    throw new Error('Failed to load reviews');
-  }
+	if (error || reviews == null) {
+		throw new Error('Failed to load reviews');
+	}
 
-  return reviews as unknown as IResReviewProps[];
+	return reviews as unknown as IResReviewProps[];
 };
 
 export const getProviderDetails = async (
-  providerId: string
+	providerId: string
 ): Promise<IResProviderProps> => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+	const supabase = createServerComponentClient<Database>({ cookies });
 
-  const { data, error } = await supabase
-    .from('providers')
-    .select('*')
-    .match({ id: providerId })
-    .single();
+	const { data, error } = await supabase
+		.from('providers')
+		.select('*')
+		.match({ id: providerId })
+		.single();
 
-  if (error || data == null) {
-    throw new Error('Failed to load provider details');
-  }
+	if (error || data == null) {
+		throw new Error('Failed to load provider details');
+	}
 
-  return data as IResProviderProps;
+	return data as IResProviderProps;
+};
+
+export const getProviderStats = async (providerId: string) => {
+	const supabase = createServerComponentClient<Database>({ cookies });
+
+	// Get total number of bookings
+	const { data: bookings } = await supabase
+		.from('bookings')
+		.select('id')
+		.eq('provider_id', providerId);
+
+	// Get total number of cars
+	const { data: cars } = await supabase
+		.from('cars')
+		.select('id')
+		.eq('provider_id', providerId);
+
+	// Get total number of reviews
+	const { data: reviews } = await supabase
+		.from('reviews')
+		.select('id')
+		.eq('provider_id', providerId);
+
+	// Get total number of client of bookings
+	const { data: users } = await supabase
+		.from('users')
+		.select('distinct(user_id)')
+		.eq('provider_id', providerId);
+
+	return {
+		bookings: bookings?.length || 0,
+		cars: cars?.length || 0,
+		reviews: reviews?.length || 0,
+		users: users?.length || 0,
+	};
 };

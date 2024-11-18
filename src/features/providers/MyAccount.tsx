@@ -36,7 +36,13 @@ interface Props {
 }
 
 export const MyAccount = ({ providerDetails }: Props) => {
-	const { user } = useAuthContext();
+	const { user, updatePassword } = useAuthContext();
+	const [loginInfo, setLoginInfo] = useState({
+		email: user?.email,
+		oldPassword: '',
+		newPassword: '',
+		confirmPassword: '',
+	});
 	const [details, setDetails] =
 		useState<Partial<IReqProviderProps>>(initialState);
 	const [isUpdating, setIsUpdating] = useState(false);
@@ -46,12 +52,42 @@ export const MyAccount = ({ providerDetails }: Props) => {
 		const { error } = await updateProviderAsync(details, user?.id || '');
 
 		if (!error) {
-			toast.success('Account Updated');
+			toast.success('Cập nhật thông tin thành công');
 			setIsUpdating(false);
 		} else {
 			console.log(error);
 			setIsUpdating(false);
 		}
+	};
+
+	const handleUpdatePassword = async () => {
+		const { email, oldPassword, newPassword, confirmPassword } = loginInfo;
+		if (!email) return;
+		if (newPassword !== confirmPassword) {
+			toast.error('Mật khẩu mới không khớp');
+			return;
+		}
+
+		const isSuccess = await updatePassword(email, oldPassword, newPassword);
+
+		if (!isSuccess) {
+			return toast.error('Mật khẩu cũ không đúng, vui lòng kiểm tra lại.');
+		}
+
+		toast.success('Cập nhật mật khẩu mới thành công');
+	};
+
+	const handleChangeLoginInfo = (key: string, value: string) => {
+		if (!loginInfo.email) {
+			setLoginInfo((prevState) => ({
+				...prevState,
+				email: user?.email,
+			}));
+		}
+		setLoginInfo((prevState) => ({
+			...prevState,
+			[key]: value,
+		}));
 	};
 
 	useEffect(() => {
@@ -103,24 +139,53 @@ export const MyAccount = ({ providerDetails }: Props) => {
 				</Box>
 				<Box>
 					<Input.Label>Mật khẩu hiện tại</Input.Label>
-					<PasswordInput placeholder='xxxxxxxxxx' disabled />
+					<PasswordInput
+						placeholder='********'
+						value={loginInfo.oldPassword}
+						onChange={(e) =>
+							handleChangeLoginInfo('oldPassword', e.target.value)
+						}
+					/>
 				</Box>
 			</Group>
 
 			<Group grow>
 				<Box>
 					<Input.Label>Mật khẩu mới</Input.Label>
-					<PasswordInput placeholder='xxxxxxxxxx' disabled />
+					<PasswordInput
+						placeholder='********'
+						value={loginInfo.newPassword}
+						onChange={(e) =>
+							handleChangeLoginInfo('newPassword', e.target.value)
+						}
+					/>
 				</Box>
 				<Box>
 					<Input.Label>Nhập lại mật khẩu mới</Input.Label>
-					<PasswordInput placeholder='xxxxxxxxxx' disabled />
+					<PasswordInput
+						placeholder='********'
+						value={loginInfo.confirmPassword}
+						onChange={(e) =>
+							handleChangeLoginInfo('confirmPassword', e.target.value)
+						}
+					/>
 				</Box>
 			</Group>
 
 			<Flex justify='flex-end'>
-				<Button disabled radius='xl' size='md' my='sm'>
-					<Text ml='xs'>Cập nhật</Text>
+				<Button
+					disabled={
+						!loginInfo.newPassword ||
+						!loginInfo.confirmPassword ||
+						!loginInfo.email ||
+						!loginInfo.oldPassword
+					}
+					radius='xl'
+					size='md'
+					my='sm'
+					onClick={handleUpdatePassword}
+				>
+					<Text>Cập nhật</Text>
 				</Button>
 			</Flex>
 		</>

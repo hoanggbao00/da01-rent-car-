@@ -62,6 +62,9 @@ importers:
       cookies-next:
         specifier: ^2.1.2
         version: 2.1.2
+      embla-carousel-autoplay:
+        specifier: ^7.1.0
+        version: 7.1.0(embla-carousel@7.1.0)
       eslint:
         specifier: 8.46.0
         version: 8.46.0
@@ -939,6 +942,11 @@ packages:
 
   electron-to-chromium@1.5.62:
     resolution: {integrity: sha512-t8c+zLmJHa9dJy96yBZRXGQYoiCEnHYgFwn1asvSPZSUdVxnB62A4RASd7k41ytG3ErFBA0TpHlKg9D9SQBmLg==}
+
+  embla-carousel-autoplay@7.1.0:
+    resolution: {integrity: sha512-nYfgSGn3ek44OzwO0t/Ptuxq4PNPD5l7Y9X7JjLYI/DN1uGjqxz9L73YYqR6YCRDnTYJ88s9fep48dzBnSG4vQ==}
+    peerDependencies:
+      embla-carousel: 7.1.0
 
   embla-carousel-react@7.1.0:
     resolution: {integrity: sha512-tbYRPRZSDNd2QLNqYDcArAakGIxtUbhS7tkP0dGXktXHGgcX+3ji3VrOUTOftBiujZrMV8kRxtrRUe/1soloIQ==}
@@ -3195,6 +3203,10 @@ snapshots:
   eastasianwidth@0.2.0: {}
 
   electron-to-chromium@1.5.62: {}
+
+  embla-carousel-autoplay@7.1.0(embla-carousel@7.1.0):
+    dependencies:
+      embla-carousel: 7.1.0
 
   embla-carousel-react@7.1.0(react@18.2.0):
     dependencies:

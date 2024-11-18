@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { IoCarSportSharp, IoChevronDown } from 'react-icons/io5';
+import { toast } from 'react-toastify';
 export function ProfileMenu() {
 	const [avatar, setAvatar] = useState('');
 	const { logOut, user, session } = useAuthContext();
@@ -16,6 +17,7 @@ export function ProfileMenu() {
 
 	const handleSignOut = async () => {
 		await logOut();
+		toast.success('Đăng xuất thành công');
 	};
 
 	useEffect(() => {
@@ -42,9 +44,12 @@ export function ProfileMenu() {
 					align='center'
 					gap={8}
 					variant='subtle'
-					py='sm'
+					p={4}
+					px={8}
+					justify={'space-between'}
+					className='rounded-full !bg-gray-400/20'
 				>
-					<Avatar src={avatar} radius='xl' />
+					<Avatar src={avatar} radius='xl' size={'sm'} bg={'gray.3'} color={'white'} />
 					<IoChevronDown />
 				</UnstyledButton>
 			</Menu.Target>

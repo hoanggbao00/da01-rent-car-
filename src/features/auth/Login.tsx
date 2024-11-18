@@ -32,6 +32,7 @@ export function Login(props: PaperProps) {
 	const form = useLoginForm();
 	const { push } = useRouter();
 	const { logInWithEmailPassword } = useAuthContext();
+	const [isPushing, setPushing] = useState(false);
 
 	const handleLogin = async () => {
 		setLoading(true);
@@ -55,9 +56,12 @@ export function Login(props: PaperProps) {
 						data.user?.user_metadata.role &&
 						data.user?.user_metadata.role === 'provider'
 					) {
-						push(`/providers/${data.user?.id}`);
+						setPushing(true);
+						push(`/providers/${data.user.id}`);
 						return;
 					}
+
+					setPushing(true);
 					push('/');
 				}
 			}
@@ -81,7 +85,7 @@ export function Login(props: PaperProps) {
 				{...props}
 			>
 				<LoadingOverlay
-					visible={isSubmitting || loading}
+					visible={isSubmitting || loading || isPushing}
 					overlayProps={{ radius: 'sm', blur: 2 }}
 				/>
 				<Text size='lg' fw={500}>

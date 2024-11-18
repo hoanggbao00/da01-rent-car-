@@ -47,8 +47,9 @@ export const Cars = ({ cars }: Props) => {
                 resetState();
                 open();
               }}
+              leftSection={<IconPlus />}
             >
-              <IconPlus /> Thêm phương tiện
+              Thêm phương tiện
             </Button>
           </Group>
         }

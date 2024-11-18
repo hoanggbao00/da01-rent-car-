@@ -6,12 +6,11 @@ export const NotRegisteredAlert = () => {
 	return (
 		<Alert
 			icon={<IconAlertCircle size='1rem' />}
-			title='Không tìm thấy Email '
+			title='Email hoặc mật khẩu không đúng'
 			color='red'
 			my='sm'
 		>
-			Có vẻ như Email của bạn chưa được đăng ký trong hệ thống, vui lòng đăng ký
-			mới.
+			Vui lòng kiểm tra lại thông tin đăng nhập như Email và Mật khẩu của bạn!
 		</Alert>
 	);
 };

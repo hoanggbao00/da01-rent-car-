@@ -22,7 +22,6 @@ export const getSearchedCars = async (
 	if (searchParams.make && searchParams.make !== 'all') {
 		matchFilter.make = searchParams.make;
 	}
-	console.log("🚀 ~ matchFilter:", matchFilter)
 
 	let { data: cars } = await supabase
 		.from('cars')
@@ -30,7 +29,6 @@ export const getSearchedCars = async (
 			'id, regions(code, name), make, model, type, year, transmission, seatingCapacity, images, status, fuelType, pricePerDay'
 		)
 		.match(matchFilter);
-
 
 	return cars as IResCarProps[];
 };

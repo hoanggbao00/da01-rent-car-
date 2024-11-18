@@ -13,7 +13,7 @@ export const ProfilePhoto = ({ updateProfile, profileUrl }: Props) => {
     const info: any = result?.info;
     await updateProfile(info.secure_url);
     widget.close();
-    toast.success('Thay đổi ảnh đại diện thành công');
+    toast.success('Tải ảnh lên thành công!\n Nhấn lưu để cập nhật!');
   };
 
   return (
@@ -33,6 +33,7 @@ export const ProfilePhoto = ({ updateProfile, profileUrl }: Props) => {
           showSkipCropButton: false,
           croppingAspectRatio: 1,
           maxFileSize: 2000000, //2MB
+          folder: 'rent-cars/profile'
         }}
       />
     </Flex>

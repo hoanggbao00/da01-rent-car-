@@ -10,8 +10,8 @@ interface Props {
   required?: boolean;
 }
 
-const carTypes = [
-  { label: 'Tất cả', value: 'Any' },
+export const carTypes = [
+  { label: 'Tất cả', value: 'any' },
   { label: 'Sedan', value: 'Sedan' },
   { label: 'Luxury Sedan', value: 'Luxury Sedan' },
   { label: 'Electric Sedan', value: 'Electric Sedan' },

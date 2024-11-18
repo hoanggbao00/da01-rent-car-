@@ -1,20 +1,26 @@
+'use client';
 import { Carousel } from '@mantine/carousel';
-import { Center, Image } from '@mantine/core';
+import { Image } from '@mantine/core';
+import Autoplay from 'embla-carousel-autoplay';
 
 const images = [
-  'https://res.cloudinary.com/dicme7cio/image/upload/v1698793460/car-go-rentals/cars-1_zdwwnu.png',
-  'https://res.cloudinary.com/dicme7cio/image/upload/v1698793460/car-go-rentals/cars-2_ygogni.png',
+	'https://res.cloudinary.com/dicme7cio/image/upload/v1698793460/car-go-rentals/cars-1_zdwwnu.png',
+	'https://res.cloudinary.com/dicme7cio/image/upload/v1698793460/car-go-rentals/cars-2_ygogni.png',
+	'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=1400&q=80',
 ];
 export const Slider = () => {
-  return (
-    <Carousel withIndicators loop>
-      {images.map((image) => (
-        <Carousel.Slide key={image} mt="2rem">
-          <Center h={{ base: 300, md: 400, xl: 600 }} mx="auto">
-            <Image src={image} alt="" />
-          </Center>
-        </Carousel.Slide>
-      ))}
-    </Carousel>
-  );
+	return (
+		<Carousel
+			withIndicators
+			loop
+			className='h-[calc(100vh-60px)]'
+			plugins={[Autoplay()]}
+		>
+			{images.map((image, index) => (
+				<Carousel.Slide key={image} className='h-[calc(100vh-60px)]'>
+					<Image src={image} alt={`slider-${index}`} />
+				</Carousel.Slide>
+			))}
+		</Carousel>
+	);
 };

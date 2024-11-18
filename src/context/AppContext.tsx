@@ -12,7 +12,6 @@ import {
 export const AppContext = createContext<IAppContext>(undefined as any);
 
 const initialState: IAppState = {
-	isPageLoading: false,
 	selectedRegion: undefined,
 	carMake: undefined,
 	pickupDate: undefined,
@@ -53,38 +52,16 @@ export const AppContextProvider = ({ children }: Props) => {
 		}));
 	}, []);
 
-	const setPageLoading = useCallback((value: boolean) => {
-		setState((prevState) => ({
-			...prevState,
-			isPageLoading: value,
-		}));
-	}, []);
-
 	return (
 		<AppContext.Provider
 			value={{
 				state,
-				setPageLoading,
 				setRegion,
 				setMake,
 				setPickupDate,
 				setReturnDate,
 			}}
 		>
-			{state.isPageLoading && (
-				<div
-					style={{
-						position: 'fixed',
-						inset: 0,
-						backgroundColor: 'rgba(0, 0, 0, 0.5)',
-						zIndex: 999,
-						display: 'grid',
-						placeItems: 'center',
-					}}
-				>
-					<div className='loader'></div>
-				</div>
-			)}
 			{children}
 		</AppContext.Provider>
 	);

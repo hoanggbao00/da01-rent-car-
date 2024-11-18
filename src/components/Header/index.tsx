@@ -18,18 +18,15 @@ export const Navbar = ({ isAuthPage }: Props) => {
 		<Box className={classes.header}>
 			<Group justify='space-between' h='100%'>
 				<Logo />
-				<Flex gap={16}>
-					<Box visibleFrom='xs'>
-						<ThemeSwitcher />
-					</Box>
+				<Flex gap={8}>
+					<NavigationMobile />
+
 					{!isAuthPage && !pathname.includes('my-account') && (
 						<Box visibleFrom='md'>
 							<AuthButtons />
 						</Box>
 					)}
 				</Flex>
-
-				<NavigationMobile />
 			</Group>
 		</Box>
 	);

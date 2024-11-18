@@ -27,8 +27,12 @@ export const AuthButtons = () => {
 							align='center'
 							gap={8}
 							variant='subtle'
+							p={4}
+							px={8}
+							justify={'space-between'}
+							className='rounded-full !bg-gray-400/20'
 						>
-							<Avatar src={''} radius='xl' />
+							<Avatar src={''} radius='xl' size={'sm'} bg={'gray.3'} color={'white'}/>
 							<IoChevronDown />
 						</UnstyledButton>
 					</Menu.Target>

@@ -51,19 +51,15 @@ export const CarCard = ({ car }: CardProps) => {
 						alt={car.make + ' ' + car.model}
 					/>
 					<div className='group-hover:animate-[slideUp_0.3s_forwards] animate-[slideDown_0.3s_forwards] absolute top-0 w-full h-full bg-gray-500/30 rounded-md grid place-items-center transition-all'>
-						<Link href={`/cars/${car.id}`}>
-							<Button>
-								<p>Xem chi tiết</p>
-								<BsArrowRight className='ml-2' />
-							</Button>
-						</Link>
+						<Button>
+							<p>Xem chi tiết</p>
+							<BsArrowRight className='ml-2' />
+						</Button>
 					</div>
 				</Link>
 			</Flex>
-			<Flex align='center'>
-				<Flex align='center' gap={'4'} w={'100%'}>
+				<Flex align='center' gap={'4'} mt={{base: 8, md: 16}} w={'100%'}>
 					<Flex
-						my={8}
 						align='center'
 						title='Số ghế'
 						direction={'column'}
@@ -77,7 +73,6 @@ export const CarCard = ({ car }: CardProps) => {
 						</Text>
 					</Flex>
 					<Flex
-						my={8}
 						align='center'
 						title='Loại cần số'
 						direction={'column'}
@@ -89,7 +84,6 @@ export const CarCard = ({ car }: CardProps) => {
 						</Text>
 					</Flex>
 					<Flex
-						my={8}
 						align='center'
 						title='Loại xăng/dầu'
 						direction={'column'}
@@ -102,7 +96,6 @@ export const CarCard = ({ car }: CardProps) => {
 						</Text>
 					</Flex>
 				</Flex>
-			</Flex>
 		</Card>
 	);
 };

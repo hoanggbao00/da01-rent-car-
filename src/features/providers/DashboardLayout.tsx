@@ -31,7 +31,7 @@ const data = [
 		icon: <IconHome size='1rem' />,
 		color: 'yellow',
 		label: 'Trang chủ',
-		endpoint: '../../',
+		endpoint: '../../cars',
 	},
 	{
 		icon: <IconDashboard size='1rem' />,
@@ -43,13 +43,13 @@ const data = [
 		icon: <IconCar size='1rem' />,
 		color: 'violet',
 		label: 'Xe của tôi',
-		endpoint: '/cars',
+		endpoint: 'cars',
 	},
 	{
 		icon: <IconMessage size='1rem' />,
 		color: 'orange',
 		label: 'Đánh giá của tôi',
-		endpoint: '/reviews',
+		endpoint: 'reviews',
 	},
 ];
 
@@ -117,7 +117,7 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 					</AppShell.Section>
 
 					<AppShell.Section>
-						<Flex align='center' onClick={handleSignOut} px={'xs'}>
+						<Flex align='center' onClick={handleSignOut} px={'xs'} py={'xs'} className='hover:bg-gray-500/10 rounded-md cursor-pointer'>
 							<ActionIcon color='red'>
 								<BiLogOutCircle size='1.2rem' />
 							</ActionIcon>

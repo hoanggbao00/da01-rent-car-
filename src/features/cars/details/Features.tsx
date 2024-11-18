@@ -20,7 +20,7 @@ interface Props {
 	otherFeatures: string[];
 	acAvailable: boolean;
 	acWorking: boolean;
-  numberOfDoors: number
+	numberOfDoors: number;
 }
 
 export const Features = ({
@@ -31,7 +31,7 @@ export const Features = ({
 	otherFeatures,
 	acAvailable,
 	acWorking,
-  numberOfDoors
+	numberOfDoors,
 }: Props) => {
 	return (
 		<>
@@ -39,17 +39,15 @@ export const Features = ({
 				Thông số
 			</Title>
 			<Grid>
-				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }}>
+				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }} className='!motion-preset-slide-right'>
 					<Card className={classes.mainFeatures} withBorder>
 						<IconUsers />
 						<Text size='xs'>Số ghế</Text>
-						<Text fw='bold' size='xl'>
-							{seatingCapacity}
-						</Text>
+						<Text fw='bold'>{seatingCapacity}</Text>
 					</Card>
 				</Grid.Col>
 
-				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }}>
+				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }} className='!motion-preset-slide-right motion-delay-[300ms]'>
 					<Card className={classes.mainFeatures} withBorder>
 						<IconManualGearbox />
 						<Text size='xs'>Loại cần số</Text>
@@ -59,7 +57,7 @@ export const Features = ({
 					</Card>
 				</Grid.Col>
 
-				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }}>
+				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }} className='!motion-preset-slide-right motion-delay-[600ms]'>
 					<Card className={classes.mainFeatures} withBorder>
 						<IconUsers />
 						<Text size='xs'>Loại xăng/dầu</Text>
@@ -67,7 +65,7 @@ export const Features = ({
 					</Card>
 				</Grid.Col>
 
-				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }}>
+				<Grid.Col span={{ base: 12, xs: 6, sm: 3 }} className='!motion-preset-slide-right motion-delay-[900ms]'>
 					<Card className={classes.mainFeatures} withBorder>
 						<IconUsers />
 						<Text size='xs'>Dung tích máy</Text>
@@ -76,7 +74,7 @@ export const Features = ({
 				</Grid.Col>
 			</Grid>
 
-			<Grid align='flex-start' my='md'>
+			<Grid align='flex-start' my='md' className='!motion-preset-slide-up-sm motion-delay-[1200ms]'>
 				{otherFeatures.length !== 0 && (
 					<Grid.Col span={{ base: 12, sm: 6 }}>
 						<Card withBorder>
@@ -97,7 +95,7 @@ export const Features = ({
 						</Card>
 					</Grid.Col>
 				)}
-				<Grid.Col span={{ base: 12, sm: 6 }}>
+				<Grid.Col span={{ base: 12, sm: 6 }} className='!motion-preset-slide-up-sm motion-delay-[1200ms]'>
 					<Card withBorder>
 						<Flex gap='md' align='center' my='md'>
 							<GiCarDoor />
