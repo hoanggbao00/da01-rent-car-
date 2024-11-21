@@ -5,11 +5,14 @@ import { Badge, BadgeProps, BadgeVariant } from '@mantine/core';
 interface Props {
   status: CarStatus | BookingStatus;
   variant?: BadgeVariant;
+  className?: string
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
-export function StatusRenderer({ status, variant }: Props) {
+export function StatusRenderer({ status, variant, className, size }: Props) {
   const defaultProps: BadgeProps = {
     variant,
-    size: 'xs',
+    size: size || 'xs',
+    className: className
   };
 
   if (status === 'pending') {

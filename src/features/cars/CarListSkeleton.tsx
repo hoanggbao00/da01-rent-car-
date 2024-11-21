@@ -4,13 +4,12 @@ import { Card, Flex, Loader } from '@mantine/core';
 
 export default function CarListSkeleton() {
 	return (
-		<Flex wrap='wrap' gap={{ base: 15, md: 24 }}>
+		<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
 			{Array(3)
 				.fill(0)
 				.map((_, index) => (
 					<Card
 						key={index}
-						w={{ base: '100%', md: '33%', lg: '23%' }}
 						radius={'md'}
 						bg={'gray.0'}
 						className='flex flex-col gap-2'
@@ -22,7 +21,6 @@ export default function CarListSkeleton() {
 				))}
 			<Card
 				key={4}
-				w={{ base: '100%', md: '33%', lg: '23%' }}
 				radius={'md'}
 				bg={'gray.0'}
 				className='flex flex-col gap-2'
@@ -32,6 +30,6 @@ export default function CarListSkeleton() {
 					Đang tải...
 				</div>
 			</Card>
-		</Flex>
+		</div>
 	);
 }

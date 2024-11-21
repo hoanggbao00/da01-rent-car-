@@ -34,7 +34,7 @@ export const PriceRange = ({ showSlider = true }: Props) => {
 					label={labelFormatter}
 					onChange={handleSliderChange}
 					thumbSize={12}
-					color='pink'
+					color='blue.5'
 				/>
 			)}
 			<Flex gap={8} mt={showSlider ? 0 : 8}>

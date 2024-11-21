@@ -8,7 +8,7 @@ export const xl = '90em';
 
 export const ghCurrency = '₫';
 
-export const primaryGradient: MantineGradient = { from: 'pink', to: 'yellow' };
+export const primaryGradient: MantineGradient = { from: 'blue.5', to: 'yellow' };
 
 export const bookedMessage = 'This Car is currently booked by another client';
 export const pendingMessage =

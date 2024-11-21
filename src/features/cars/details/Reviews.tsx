@@ -46,7 +46,7 @@ export const Reviews = ({ reviews: _reviews, car_id, provider_id }: Props) => {
 	};
 
 	return (
-		<Card my='md'>
+		<Card my='md' >
 			{session?.user.id && session.user.user_metadata.role !== 'provider' && (
 				<div className='flex flex-col gap-2 items-end group'>
 					<Textarea

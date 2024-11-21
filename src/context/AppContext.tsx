@@ -24,14 +24,14 @@ interface Props {
 export const AppContextProvider = ({ children }: Props) => {
 	const [state, setState] = useState<IAppState>(initialState);
 
-	const setRegion = useCallback((selectedRegion: Region) => {
+	const setRegion = useCallback((selectedRegion: Region | undefined) => {
 		setState((prevState) => ({
 			...prevState,
 			selectedRegion,
 		}));
 	}, []);
 
-	const setMake = useCallback((selectedMake: SelectItem) => {
+	const setMake = useCallback((selectedMake: SelectItem | undefined) => {
 		setState((prevState) => ({
 			...prevState,
 			carMake: selectedMake,

@@ -39,7 +39,7 @@ export const YearModel = ({ showSlider = true }: Props) => {
 					value={[state.minYear, state.maxYear]}
 					onChange={handleSliderChange}
 					thumbSize={12}
-					color='pink'
+					color='blue.5'
 				/>
 			)}
 			{!showSlider && (

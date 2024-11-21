@@ -19,11 +19,12 @@ import {
 import { IconX } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import classes from './Styles.module.css';
 import { useAuthContext } from '@/context/AuthContext';
 import { NOTIFICATION_MSG } from '@/consts';
+import { BiCalendar } from 'react-icons/bi';
 
 interface Props {
 	car: IResCarProps;
@@ -41,9 +42,6 @@ export const BookingDetails = ({ car, user }: Props) => {
 
 	const isProvider = session?.user.user_metadata?.role === 'provider';
 
-	const [numOfDays, setNumOfDays] = useState<number | ''>(
-		car.minimumRentalPeriodInDays
-	);
 	const [profileError, setProfileError] = useState<string | undefined>(
 		undefined
 	);
@@ -53,6 +51,17 @@ export const BookingDetails = ({ car, user }: Props) => {
 		setPickupDate,
 		setReturnDate,
 	} = useAppContext();
+
+	const numOfDays = useMemo(() => {
+		if (pickupDate && returnDate) {
+			const diffTime = Math.abs(returnDate.getTime() - pickupDate.getTime());
+			const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+			return diffDays;
+		} else {
+			return 0;
+		}
+	}, [pickupDate, returnDate]);
 
 	const handleBookNow = async () => {
 		if (isProvider) return;
@@ -138,16 +147,9 @@ export const BookingDetails = ({ car, user }: Props) => {
 	};
 
 	return (
-		<Card
-			w={{ base: '100%', md: '350px', lg: '400px' }}
-			withBorder
-			className={classes.bookingContainer}
-		>
-			<Title order={4} mb='md' c='gray.6'>
-				Thông tin đặt xe
-			</Title>
+		<div className='bg-black/80 text-white p-6 rounded-lg shadow'>
 			<Flex gap='sm' direction={{ base: 'column', sm: 'row' }}>
-				<Box>
+				<Box w={{ base: '100%', md: '50%' }}>
 					<SelectDate
 						value={pickupDate}
 						label='Ngày lấy xe'
@@ -156,7 +158,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 					/>
 					{triggered && !pickupDate && <Input.Error>Chọn ngày</Input.Error>}
 				</Box>
-				<Box>
+				<Box w={{ base: '100%', md: '50%' }}>
 					<SelectDate
 						label='Ngày trả'
 						value={returnDate}
@@ -166,76 +168,33 @@ export const BookingDetails = ({ car, user }: Props) => {
 					{triggered && !returnDate && <Input.Error>Chọn ngày</Input.Error>}
 				</Box>
 			</Flex>
-
-			<Box my='md'>
-				<Title order={5} my='xs' className='text-muted'>
-					Địa chỉ
-				</Title>
-				<Text size='sm' className='text-default'>
-					{user?.regions.name || <Link href='/my-account/profile'>Add</Link>}
-				</Text>
-				{profileError && (
-					<Notification
-						icon={<IconX size='0.6rem' />}
-						c='red'
-						title='Thông báo'
-					>
-						{profileError}
-						<Link href='/my-account/profile' style={{ display: 'block' }}>
-							Nhấn vào đây để cập nhật
-						</Link>
-					</Notification>
-				)}
-			</Box>
-
-			<Title order={5} my='xs' className='text-muted'>
-				Thông tin hợp đồng
-			</Title>
-			<Box className={classes.rentalInfo} py='xs' px='md'>
-				<Flex justify='space-between'>
-					<Text className='text-default'>Số ngày thuê tối thiểu</Text>
-					<Text className='text-default'>{car.minimumRentalPeriodInDays}</Text>
-				</Flex>
-
-				{car.maximumRentalPeriodInDays && (
-					<Flex justify='space-between' py='sm'>
-						<Text className='text-default'>Số ngày thuê tối đa</Text>
-						<Text className='text-default'>
-							{car.maximumRentalPeriodInDays}
-						</Text>
-					</Flex>
-				)}
-
-				<Flex justify='space-between'>
-					<Text className='text-default'>Giá theo ngày</Text>
-					<Text className='text-default'>
-						{ghCurrency} {car.pricePerDay.toLocaleString()}
-					</Text>
-				</Flex>
-
-				<Divider my='sm' />
-				<Box>
-					<Text className='text-default'>Số ngày</Text>
-					<NumberInput
-						min={car.minimumRentalPeriodInDays || undefined}
-						max={car.maximumRentalPeriodInDays || undefined}
-						value={numOfDays}
-						onChange={(value) => setNumOfDays(Number(value))}
-					/>
-				</Box>
-
-				<Divider my='md' />
-
-				<Flex justify='space-between'>
-					<Text className='text-default'>Tổng giá</Text>
-					{numOfDays && (
-						<Text fw='bold' className='text-default'>
-							{(numOfDays * car.pricePerDay).toLocaleString()} {ghCurrency}
-						</Text>
-					)}
-				</Flex>
-			</Box>
-
+			<Divider my={12} />
+			<ul className='space-y-2'>
+				<li className='flex justify-between'>
+					<span>Ngày thuê tối thiểu</span>
+					<span>{car.minimumRentalPeriodInDays}</span>
+				</li>
+				<li className='flex justify-between'>
+					<span>Ngày thuê tối đa</span>
+					<span>{car.maximumRentalPeriodInDays}</span>
+				</li>
+				<li className='flex justify-between'>
+					<span>Tổng ngày</span>
+					<span>{numOfDays} ngày</span>
+				</li>
+				<li className='flex justify-between'>
+					<span>Giá theo ngày</span>
+					<span>
+						{car.pricePerDay.toLocaleString()} {ghCurrency}
+					</span>
+				</li>
+			</ul>
+			<div className='flex justify-between mt-4'>
+				<span className='text-xl font-bold'>Tổng giá dự kiến:</span>
+				<span className='text-xl font-bold'>
+					{(numOfDays * car.pricePerDay).toLocaleString()} {ghCurrency}
+				</span>
+			</div>
 			<Button
 				w='100%'
 				my='sm'
@@ -244,11 +203,25 @@ export const BookingDetails = ({ car, user }: Props) => {
 			>
 				Gửi yêu cầu thuê
 			</Button>
+			{profileError && (
+				<Notification
+					icon={<IconX size='0.6rem' />}
+					c='red'
+					title='Thông báo'
+					bg='red.1'
+					mb={6}
+				>
+					{profileError}
+					<Link href='/my-account/profile' style={{ display: 'block' }}>
+						Nhấn vào đây để cập nhật
+					</Link>
+				</Notification>
+			)}
 			{isProvider && (
-				<Alert title='Thông báo' color='yellow'>
+				<Alert title='Thông báo' color='yellow' bg={'yellow.1'}>
 					Vui lòng chuyển sang tài khoản khách hàng để tiến hành đặt xe
 				</Alert>
 			)}
-		</Card>
+		</div>
 	);
 };

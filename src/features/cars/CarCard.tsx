@@ -1,99 +1,92 @@
+import { fuelTypes } from '@/components/SelectFuelType';
 import { StatusRenderer } from '@/components/StatusRenderer';
 import { ghCurrency } from '@/const';
 import { IResCarProps } from '@/models/res.model';
-import { Box, Button, Card, Flex, Image, Text, Title } from '@mantine/core';
-import {
-	IconBrandGoogleMaps,
-	IconManualGearbox,
-	IconUsers,
-} from '@tabler/icons-react';
+import { Card, Text, Title } from '@mantine/core';
+
+import { CarsCarousel } from './details/Carousel';
 import Link from 'next/link';
+import { MdEventSeat } from 'react-icons/md';
 import { BsArrowRight, BsFuelPump } from 'react-icons/bs';
+import { BiCheck } from 'react-icons/bi';
 
 interface CardProps {
 	car: Partial<IResCarProps>;
 }
 export const CarCard = ({ car }: CardProps) => {
+	const fuelType = fuelTypes.find((type) => type.value === car.fuelType)?.label;
+	const transmission =
+		car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động';
+
 	return (
 		<Card
-			w={{ base: '100%', md: '33%', lg: '23%' }}
-			radius={'md'}
-			bg={'gray.0'}
-			className='group relative'
+			radius={'lg'}
+			className='group relative hover:scale-105 transition-all hover:!border-sky-500'
+			withBorder
+			p={'md'}
 		>
-			<Flex align='flex-end' justify='space-between'>
-				<Box>
-					{car.status && <StatusRenderer status={car.status} />}
-					<Text fz={'xs'} color='gray.6' className='flex items-center gap-1'>
-						<IconBrandGoogleMaps size={12} /> {car.regions?.name}
-					</Text>
-					<Link href={`/cars/${car.id}`}>
-						<Title order={3}>
-							{car.make} {car.model} {car.year}
-						</Title>
-					</Link>
-					<Text fw='bold' size='md'>
-						{car.pricePerDay?.toLocaleString()}
-						{ghCurrency}/ngày
-					</Text>
-				</Box>
-			</Flex>
-			<Flex
-				justify='space-between'
-				align='flex-end'
-				style={{ width: '100%' }}
-				className='relative overflow-hidden'
-			>
-				<Link href={`/cars/${car.id}`} style={{ width: '100%' }}>
-					<Image
-						style={{
-							aspectRatio: '16 / 9',
-						}}
-						radius='md'
-						src={car.images?.[0]}
-						alt={car.make + ' ' + car.model}
-					/>
-					<div className='group-hover:animate-[slideUp_0.3s_forwards] animate-[slideDown_0.3s_forwards] absolute top-0 w-full h-full bg-gray-500/30 rounded-md grid place-items-center transition-all'>
-						<Button>
-							<p>Xem chi tiết</p>
-							<BsArrowRight className='ml-2' />
-						</Button>
+			<div className='flex gap-2 flex-col'>
+				<StatusRenderer status={car.status || 'available'} size='md' />
+				<div className='flex justify-end'>
+					<div className='w-full !aspect-video relative'>
+						<CarsCarousel images={car.images ?? []} />
 					</div>
-				</Link>
-			</Flex>
-			<Flex align='center' gap={'4'} mt={{ base: 8, md: 16 }} w={'100%'}>
-				<Flex
-					align='center'
-					title='Chỗ ngồi'
-					direction={'column'}
-					justify={'center'}
-					style={{ flex: 1 }}
-					gap={6}
-				>
-					<IconUsers size='24px' color='gray' />
-					<Text c='gray.6' size='md' fw={'bold'}>
-						{car.seatingCapacity}
+				</div>
+				<div className='space-y-2'>
+					<Text c='gray.6'>
+						{car.type} | {transmission}
 					</Text>
-				</Flex>
-				<Flex align='center' title='Loại cần số' direction={'column'} gap={6}>
-					<IconManualGearbox size='24px' color='gray' />
-					<Text c='gray.6' size='md' fw={'bold'}>
-						{car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động'}
-					</Text>
-				</Flex>
-				<Flex
-					align='center'
-					title='Loại xăng/dầu'
-					direction={'column'}
-					style={{ flex: 1 }}
-					gap={6}
-				>
-					<BsFuelPump size='24px' color='gray' />
-					<Text c='gray.6' size='md' fw={'bold'}>
-						{car.fuelType}
-					</Text>
-				</Flex>
-			</Flex>
+					<div className='flex items-center justify-between'>
+						<Link
+							href={`/cars/${car.id}`}
+							className='hover:text-sky-500 transition-colors'
+						>
+							<Title order={3}>
+								{car.make} {car.model}, {car.year}
+							</Title>
+						</Link>
+						<div>
+							<span className='font-semibold'>
+								{car.pricePerDay?.toLocaleString()} {ghCurrency}
+							</span>
+							<span>/ngày</span>
+						</div>
+					</div>
+					<div className='flex xl:items-center flex-col xl:flex-row gap-2'>
+						<div className='flex flex-1 gap-2 flex-wrap'>
+							<span
+								title='Số ghế'
+								className='bg-gray-400/20 inline-flex gap-2 rounded-md items-center px-2 py-1'
+							>
+								<MdEventSeat /> {car.seatingCapacity}
+							</span>
+							<span
+								title='Loại nhiên liệu'
+								className='bg-gray-400/20 inline-flex gap-2 rounded-md items-center px-2 py-1'
+							>
+								<BsFuelPump /> {fuelType}
+							</span>
+							{car.otherFeatures?.map((feature, index) => (
+								<span
+									key={index}
+									title={feature}
+									className='bg-gray-400/20 inline-flex gap-2 rounded-md items-center px-2 py-1'
+								>
+									<BiCheck /> {feature}
+								</span>
+							))}
+						</div>
+						<div>
+							<Link
+								href={`/cars/${car.id}`}
+								className='group-hover:block hidden text-sky-500 hover:text-sky-600 transition-colors motion-preset-slide-right bg-gray-400/20 px-4 rounded-md text-sm md:text-base w-fit'
+							>
+								Xem chi tiết <BsArrowRight className='inline-block' />
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
 		</Card>
 	);
 };

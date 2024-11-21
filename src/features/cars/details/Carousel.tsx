@@ -1,33 +1,23 @@
-import { md, sm } from '@/const';
 import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from '@mantine/hooks';
-import classes from './Styles.module.css';
 import Autoplay from 'embla-carousel-autoplay';
+import { Image } from '@mantine/core';
 
 interface Props {
 	images: string[];
 }
 
 export const CarsCarousel = ({ images }: Props) => {
-	const smScreen = useMediaQuery(`(min-width: ${sm})`);
-	const mdScreen = useMediaQuery(`(min-width: ${md})`);
 
 	return (
 		<Carousel
-			className={classes.carousel}
+			className='absolute inset-0'
 			withIndicators
 			loop
 			plugins={[Autoplay()]}
 		>
-			{images.map((image) => (
+			{images.map((image, index) => (
 				<Carousel.Slide key={image} mx='auto'>
-					<div
-						style={{
-							background: `center / cover no-repeat url(${image})`,
-							height: mdScreen ? '400px' : smScreen ? '300px' : '200px',
-							borderRadius: '6px',
-						}}
-					/>
+					<Image src={image} alt={`car-${index}`} className='w-full aspect-video !rounded-lg' />
 				</Carousel.Slide>
 			))}
 		</Carousel>

@@ -21,6 +21,7 @@ export default function NotificationButton({
 	setIsRead,
 	isLoading,
 }: Props) {
+	
 	const onReadNotification = async () => {
 		await handleReadNotification(userId);
 		setIsRead(true);

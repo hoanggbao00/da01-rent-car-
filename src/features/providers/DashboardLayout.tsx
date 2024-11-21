@@ -1,5 +1,4 @@
 'use client';
-import { ThemeSwitcher } from '@/components/Header/ThemeSwitcher';
 import { useAuthContext } from '@/context/AuthContext';
 import { CarContextProvider } from '@/context/CarContext';
 import { useProviderDetails } from '@/hooks/useProviderDetails';
@@ -63,6 +62,7 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 	const { notifications, is_read, isLoading } = useNotifications(
 		user?.id || ''
 	);
+
 	const [opened, setOpened] = useState(false);
 	const theme = useMantineTheme();
 	const { providerDetails } = useProviderDetails(user?.id);
@@ -71,7 +71,7 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 
 	useEffect(() => {
 		setIsRead(is_read ?? false);
-	}, [isRead]);
+	}, [is_read]);
 
 	const handleSignOut = async () => {
 		await logOut();
@@ -119,8 +119,6 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 									isLoading={isLoading}
 								/>
 							)}
-
-							<ThemeSwitcher />
 						</div>
 					</Flex>
 				</AppShell.Header>

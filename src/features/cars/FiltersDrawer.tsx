@@ -39,7 +39,8 @@ export const FiltersDrawer = () => {
 				opened={opened}
 				onClose={close}
 				title={<Logo />}
-				display={{ base: 'inline-block', md: 'none' }}
+				w={'100%'}
+				display={{ base: 'inline-block', lg: 'none' }}
 				position='top'
 				size='xl'
 				pt='100px'
@@ -48,7 +49,7 @@ export const FiltersDrawer = () => {
 					transition: 'slide-down',
 				}}
 			>
-				<Flex align='center' justify='space-between'>
+				<Flex w={'100%'} align='center' justify='space-between'>
 					<Title order={4}>Bộ lọc</Title>
 					<ResetFiltersButton />
 				</Flex>

@@ -1,3 +1,4 @@
+'use client';
 import { Burger, Divider, Drawer, Flex } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { AuthButtons } from './AuthButtons';
@@ -12,7 +13,9 @@ import { useEffect, useState } from 'react';
 export const NavigationMobile = () => {
 	const [opened, { close, toggle }] = useDisclosure(false);
 	const { session } = useAuthContext();
-	const { notifications, is_read, isLoading } = useNotifications(session?.user.id);
+	const { notifications, is_read, isLoading } = useNotifications(
+		session?.user.id
+	);
 	const [isRead, setIsRead] = useState(is_read ?? true);
 
 	useEffect(() => {
@@ -35,9 +38,32 @@ export const NavigationMobile = () => {
 			>
 				<Divider my='sm' className={classes.divider} />
 				<AuthButtons />
+				<nav className='mt-4'>
+					<ul className='flex flex-col space-y-4'>
+						<li>
+							<a href='#' className='text-gray-600 hover:text-gray-900'>
+								Home
+							</a>
+						</li>
+						<li>
+							<a href='#' className='text-gray-600 hover:text-gray-900'>
+								Vehicles
+							</a>
+						</li>
+						<li>
+							<a href='#' className='text-gray-600 hover:text-gray-900'>
+								Blog
+							</a>
+						</li>
+						<li>
+							<a href='#' className='text-gray-600 hover:text-gray-900'>
+								Contacts
+							</a>
+						</li>
+					</ul>
+				</nav>
 			</Drawer>
 			<Flex gap={8}>
-				<ThemeSwitcher />
 				{session && (
 					<NotificationButton
 						notifications={notifications ?? []}

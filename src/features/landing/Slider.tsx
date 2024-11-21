@@ -13,12 +13,12 @@ export const Slider = () => {
 		<Carousel
 			withIndicators
 			loop
-			className='h-[calc(100vh-60px)]'
+			className='h-full'
 			plugins={[Autoplay()]}
 		>
 			{images.map((image, index) => (
-				<Carousel.Slide key={image} className='h-[calc(100vh-60px)]'>
-					<Image src={image} alt={`slider-${index}`} />
+				<Carousel.Slide key={image} className='h-full'>
+					<Image src={image} alt={`slider-${index}`} className='w-full aspect-video'/>
 				</Carousel.Slide>
 			))}
 		</Carousel>

@@ -8,7 +8,7 @@ export const Transmission = () => {
       <Text my={16}>Loại cần số</Text>
 
       <SegmentedControl
-        color="pink"
+        color="blue.5"
         radius="lg"
         value={state.transmission}
         onChange={(value) => updateFilterProperty('transmission', value)}

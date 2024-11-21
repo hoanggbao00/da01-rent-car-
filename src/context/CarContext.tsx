@@ -27,7 +27,7 @@ const initialCarState: IReqCarProps = {
   region_code: 0,
   pricePerDay: 500000,
   minimumRentalPeriodInDays: 1,
-  maximumRentalPeriodInDays: '',
+  maximumRentalPeriodInDays: 0,
 };
 
 const initialState: ICarState = initialCarState;

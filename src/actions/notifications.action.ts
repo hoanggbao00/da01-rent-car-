@@ -19,9 +19,8 @@ export const getNotifications = async (
 		.select(
 			'*, users!notifications_transfer_id_fkey1(id, firstName, lastName, avatar)'
 		)
-		.eq('receiver_id', user_id);
-
-		console.log(notifications)
+		.eq('receiver_id', user_id)
+		.order('created_at', { ascending: false });
 
 	const is_read = await supabase
 		.from('users')

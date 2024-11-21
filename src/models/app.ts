@@ -90,8 +90,8 @@ export interface IBaseCarProps {
 	provider_id: string | undefined;
 	region_code: number | undefined;
 	pricePerDay: number;
-	minimumRentalPeriodInDays: number | '';
-	maximumRentalPeriodInDays: number | '';
+	minimumRentalPeriodInDays: number;
+	maximumRentalPeriodInDays: number;
 }
 
 export interface IBaseProviderProps {
@@ -168,8 +168,8 @@ export interface IAppState {
 
 export interface IAppContext {
 	state: IAppState;
-	setRegion: (selectedRegion: Region) => void;
-	setMake: (selectedMake: SelectItem) => void;
+	setRegion: (selectedRegion: Region | undefined) => void;
+	setMake: (selectedMake: SelectItem | undefined) => void;
 	setPickupDate: (pickupDate: DateValue) => void;
 	setReturnDate: (returnDate: DateValue) => void;
 }

@@ -2,7 +2,7 @@ import { optionsFilter } from '@/functions';
 import { Select } from '@mantine/core';
 import { ReactNode, useEffect } from 'react';
 
-const fuelTypes = [
+export const fuelTypes = [
   { label: 'Tất cả', value: 'Any' },
   { label: 'Gasoline', value: 'Gasoline' },
   { label: 'Diesel', value: 'Diesel' },

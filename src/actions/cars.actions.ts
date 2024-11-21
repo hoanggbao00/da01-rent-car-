@@ -26,7 +26,7 @@ export const getSearchedCars = async (
 	let { data: cars } = await supabase
 		.from('cars')
 		.select(
-			'id, regions(code, name), make, model, type, year, transmission, seatingCapacity, images, status, fuelType, pricePerDay'
+			'id, regions(code, name), make, model, type, year, transmission, seatingCapacity, images, status, fuelType, pricePerDay, otherFeatures'
 		)
 		.match(matchFilter);
 

@@ -32,7 +32,9 @@ export default function RootLayout({
 			<body>
 				<RootStyleRegistry>
 					<Navbar isAuthPage />
+					<div className='mt-20'>
 					{children}
+					</div>
 				</RootStyleRegistry>
 			</body>
 		</html>

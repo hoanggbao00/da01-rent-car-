@@ -1,3 +1,4 @@
+'use client';
 import {
 	Avatar,
 	Button,
@@ -12,8 +13,7 @@ import { ProfileMenu } from '../ProfileMenu';
 import Link from 'next/link';
 import { useAuthContext } from '@/context/AuthContext';
 import { IoChevronDown } from 'react-icons/io5';
-import NotificationButton from '../Notifications/NotificationButton';
-import { useNotifications } from '@/hooks/useNotifications';
+
 
 export const AuthButtons = () => {
 	const smallScreen = useMediaQuery(`(max-width: 991px)`);

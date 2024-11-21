@@ -31,7 +31,9 @@ export default function RootLayout({
 			<body>
 				<RootStyleRegistry>
 					<Navbar />
+					<div className='mt-20'>
 					{children}
+					</div>
 				</RootStyleRegistry>
 			</body>
 		</html>

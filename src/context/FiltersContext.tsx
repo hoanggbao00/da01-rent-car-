@@ -1,54 +1,64 @@
 import { today } from '@/const';
 import { IFiltersContext, IFiltersState } from '@/models/app';
 import { ReactNode, createContext, useContext, useState } from 'react';
+import { useAppContext } from './AppContext';
+import { useRouter } from 'next/navigation';
 
 export const FiltersContext = createContext<IFiltersContext>(undefined as any);
 
 const initialState: IFiltersState = {
-  type: 'any',
-  minPrice: 0,
-  maxPrice: 500000000,
-  minYear: 2000,
-  maxYear: today.getFullYear(),
-  transmission: 'any',
-  fuelType: 'any',
+	type: 'any',
+	minPrice: 0,
+	maxPrice: 500000000,
+	minYear: 2000,
+	maxYear: today.getFullYear(),
+	transmission: 'any',
+	fuelType: 'any',
 };
 
 export const FiltersContextProvider = ({
-  children,
+	children,
 }: {
-  children: ReactNode;
+	children: ReactNode;
 }) => {
-  const [state, setState] = useState<IFiltersState>(initialState);
+	const [state, setState] = useState<IFiltersState>(initialState);
+	const { setMake, setPickupDate, setRegion, setReturnDate } = useAppContext();
+	const { replace } = useRouter();
 
-  const updateFilterProperty = (
-    key: keyof IFiltersState,
-    value: IFiltersState[keyof IFiltersState]
-  ) => {
-    setState((prevState) => ({
-      ...prevState,
-      [key]: value,
-    }));
-  };
+	const updateFilterProperty = (
+		key: keyof IFiltersState,
+		value: IFiltersState[keyof IFiltersState]
+	) => {
+		setState((prevState) => ({
+			...prevState,
+			[key]: value,
+		}));
+	};
 
-  const resetFilters = () => {
-    setState(initialState);
-  };
+	const resetFilters = () => {
+		setMake(undefined);
+		setPickupDate(null);
+		setRegion(undefined);
+		setReturnDate(null);
+		setState(initialState);
 
-  return (
-    <FiltersContext.Provider
-      value={{
-        state,
-        updateFilterProperty,
-        resetFilters,
-      }}
-    >
-      {children}
-    </FiltersContext.Provider>
-  );
+		replace('/cars?');
+	};
+
+	return (
+		<FiltersContext.Provider
+			value={{
+				state,
+				updateFilterProperty,
+				resetFilters,
+			}}
+		>
+			{children}
+		</FiltersContext.Provider>
+	);
 };
 
 export const useFiltersContext = () => {
-  const context = useContext(FiltersContext);
-  return context;
+	const context = useContext(FiltersContext);
+	return context;
 };
