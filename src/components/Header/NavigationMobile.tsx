@@ -4,11 +4,12 @@ import { useDisclosure } from '@mantine/hooks';
 import { AuthButtons } from './AuthButtons';
 import { Logo } from './Logo';
 import classes from './Style.module.css';
-import { ThemeSwitcher } from './ThemeSwitcher';
 import NotificationButton from '../Notifications/NotificationButton';
 import { useAuthContext } from '@/context/AuthContext';
 import { useNotifications } from '@/hooks/useNotifications';
 import { useEffect, useState } from 'react';
+import { ROUTES } from '.';
+import Link from 'next/link';
 
 export const NavigationMobile = () => {
 	const [opened, { close, toggle }] = useDisclosure(false);
@@ -40,26 +41,13 @@ export const NavigationMobile = () => {
 				<AuthButtons />
 				<nav className='mt-4'>
 					<ul className='flex flex-col space-y-4'>
-						<li>
-							<a href='#' className='text-gray-600 hover:text-gray-900'>
-								Home
-							</a>
-						</li>
-						<li>
-							<a href='#' className='text-gray-600 hover:text-gray-900'>
-								Vehicles
-							</a>
-						</li>
-						<li>
-							<a href='#' className='text-gray-600 hover:text-gray-900'>
-								Blog
-							</a>
-						</li>
-						<li>
-							<a href='#' className='text-gray-600 hover:text-gray-900'>
-								Contacts
-							</a>
-						</li>
+						{ROUTES.map((route) => (
+							<li key={route.path}>
+								<Link href={route.path} className='text-gray-500 hover:text-sky-500' onClick={close}>
+									{route.name}
+								</Link>
+							</li>
+						))}
 					</ul>
 				</nav>
 			</Drawer>
