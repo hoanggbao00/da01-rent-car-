@@ -13,11 +13,13 @@ import { useAppContext } from '@/context/AppContext';
 import { useRegions } from '@/hooks/useRegions';
 import { SelectCarMake } from '@/components/SelectCarMake';
 import { carMakes } from '@/data/car-makes';
+import { useRouter } from 'next/navigation';
 
 export const FiltersDrawer = () => {
 	const [opened, { open, close }] = useDisclosure(false);
 	const { regions } = useRegions();
 	const { state, setRegion, setMake } = useAppContext();
+	const router = useRouter();
 
 	const handleRegionChange = (value: string) => {
 		if (regions) {
@@ -28,9 +30,24 @@ export const FiltersDrawer = () => {
 		}
 	};
 
-  const handleCarMakeChange = (value: string) => {
+	const handleCarMakeChange = (value: string) => {
 		const selectedMake = carMakes.filter((make) => make.value === value)[0];
 		setMake(selectedMake);
+	};
+
+	const handleSearchCars = () => {
+		let params = {} as any;
+		if (state.selectedRegion) {
+			params.region =
+				state.selectedRegion.code === -1 ? '' : state.selectedRegion.code;
+		}
+
+		if (state.carMake) {
+			params.make = state.carMake.value ?? 'all';
+		}
+
+		const _search = new URLSearchParams(params);
+		router.replace(`?${_search}`);
 	};
 
 	return (
@@ -62,6 +79,16 @@ export const FiltersDrawer = () => {
 					onChange={handleCarMakeChange}
 					addAll={true}
 				/>
+				<Button
+					onClick={handleSearchCars}
+					fullWidth
+					radius='md'
+					size='sm'
+					color='blue.5'
+					mt={16}
+				>
+					Tim kiếm
+				</Button>
 				<SelectCarType addAny={true} />
 				<PriceRange />
 				<YearModel />
