@@ -7,18 +7,17 @@ import BookingFormLanding from './BookingForm';
 export default function LandingPage() {
 	return (
 		<div className='bg-white md:px-10 px-4'>
-			<div className='md:hidden flex flex-col justify-center items-center p-8'>
+			<div className='lg:hidden flex flex-col justify-center items-center p-8'>
 				<h1 className='text-5xl font-bold mb-4 text-center'>
-					Luxury Limo Hire
+					Xe thuê chất lượng
 				</h1>
 				<p className='text-xl mb-8 text-center'>
-					We offer professional car rental & limousine services in our range of
-					high-end vehicles
+					Cam kết đồng hành cùng bạn với mọi nẻo đường xa
 				</p>
 				<div className='motion-preset-slide-right motion-duration-1000'>
 					<Link href={'/cars'}>
-						<button className='bg-sky-500 text-white px-6 py-2 rounded-md flex items-center gap-2 hover:motion-preset-confetti hover:motion-duration-1000'>
-							<BiCalendar /> Booking now
+						<button className='bg-sky-500 text-white px-6 py-2 rounded-md !flex items-center gap-2 hover:motion-preset-confetti hover:motion-duration-1000'>
+							<BiCalendar /> Khám phá ngay
 						</button>
 					</Link>
 				</div>
@@ -31,16 +30,15 @@ export default function LandingPage() {
 					alt='Hero Image'
 					className='w-full aspect-video object-cover'
 				/>
-				<div className='absolute inset-0 flex-col pt-32 items-center p-8 text-white bg-black/20 hidden md:flex'>
-					<h1 className='text-5xl font-bold mb-4'>Luxury Limo Hire</h1>
+				<div className='absolute inset-0 flex-col pt-32 items-center p-8 text-white bg-black/20 hidden lg:flex'>
+					<h1 className='text-5xl font-bold mb-4'>Xe thuê chất lượng</h1>
 					<p className='text-xl mb-8'>
-						We offer professional car rental & limousine services in our range
-						of high-end vehicles
+						Cam kết đồng hành cùng bạn với mọi nẻo đường xa
 					</p>
 					<div className='motion-preset-slide-right motion-duration-1500'>
 						<Link href={'/cars'}>
 							<button className='bg-sky-500 text-white px-6 py-2 rounded-md !flex items-center gap-2 hover:motion-preset-confetti hover:motion-duration-1000'>
-								<BiCalendar /> Booking now
+								<BiCalendar /> Khám phá ngay
 							</button>
 						</Link>
 					</div>
@@ -55,36 +53,36 @@ export default function LandingPage() {
 
 			{/* Services Section */}
 			<section className='max-w-5xl mx-auto mt-16 p-4'>
-				<h2 className='text-4xl font-bold mb-8'>Services</h2>
+				<h2 className='text-4xl font-bold mb-8'>Dịch vụ</h2>
 				<p className='text-gray-600 mb-8'>
-					We invite you to try our services, and we guarantee that you will be
-					completely satisfied
+					Chúng tôi mời bạn dùng thử dịch vụ của chúng tôi và chúng tôi đảm bảo
+					rằng bạn sẽ hoàn toàn hài lòng
 				</p>
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 					{[
 						{
-							title: 'Airport transfers',
+							title: 'Đưa đón sân bay',
 							image: DEFAULT_IMAGE,
 							description:
-								'With knowledge of the field and years of expertise, our team is specialized to meet every airport transfer is possible.',
+								'Với kiến ​​thức về lĩnh vực này và nhiều năm kinh nghiệm, đội ngũ của chúng tôi có chuyên môn cao để đáp ứng mọi dịch vụ đưa đón sân bay.',
 						},
 						{
-							title: 'Intercity trips',
+							title: 'Hành trình dài',
 							image: DEFAULT_IMAGE,
 							description:
-								'Your transportation between cities with chauffeur on over the entire country.',
+								'Đồng hành cùng bạn với mọi nẻo đường trên toàn quốc.',
 						},
 						{
-							title: 'Wedding events',
+							title: 'Đám cưới',
 							image: DEFAULT_IMAGE,
 							description:
-								'Our friendly and attentive service completes the whole experience of your very special day.',
+								'Dịch vụ thân thiện và chu đáo của chúng tôi sẽ hoàn thiện toàn bộ trải nghiệm trong ngày đặc biệt của bạn.',
 						},
 						{
-							title: 'Business Meeting',
+							title: 'Gặp gỡ đối tác',
 							image: DEFAULT_IMAGE,
 							description:
-								'Focus on your meeting with your client, and forget about the road changes.',
+								'Hãy tập trung vào cuộc gặp với khách hàng và quên đi những thay đổi trên đường đi.',
 						},
 					].map((service, index) => (
 						<div key={index} className='bg-gray-100 rounded-lg overflow-hidden'>
@@ -95,12 +93,18 @@ export default function LandingPage() {
 								height={200}
 								className='w-full'
 							/>
-							<div className='p-4'>
-								<h3 className='text-xl font-bold mb-2'>{service.title}</h3>
-								<p className='text-gray-600 mb-4'>{service.description}</p>
-								<button className='bg-sky-500 text-white px-4 hover:bg-sky-600 py-2 rounded-md'>
-									Read More
-								</button>
+							<div className='p-4 flex flex-col justify-between'>
+								<div>
+									<h3 className='text-xl font-bold mb-2'>{service.title}</h3>
+									<p className='text-gray-600 mb-4 line-clamp-3'>
+										{service.description}
+									</p>
+								</div>
+								<Link href={'/about-us'}>
+									<button className='bg-sky-500 text-white px-4 hover:bg-sky-600 py-2 rounded-md'>
+										Xem thêm
+									</button>
+								</Link>
 							</div>
 						</div>
 					))}
@@ -109,10 +113,9 @@ export default function LandingPage() {
 
 			{/* Our Fleet Section (beginning) */}
 			<section className='max-w-5xl mx-auto mt-16 p-4'>
-				<h2 className='text-4xl font-bold mb-4'>Our Fleet</h2>
+				<h2 className='text-4xl font-bold mb-4'>Đội ngũ chúng tôi</h2>
 				<p className='text-gray-600'>
-					We offer an extensive fleet of vehicles including sedans, limousines
-					and coaches
+				Chúng tôi cung cấp đội xe đa dạng bao gồm xe sedan, xe limousine...
 				</p>
 				{/* Fleet content would go here */}
 			</section>

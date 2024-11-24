@@ -20,7 +20,7 @@ export function SelectCarMake({
 }: Props) {
 	useEffect(() => {
 		if (addAll && !carMakes.some((make) => make.value === 'all')) {
-			carMakes.unshift({ label: 'All', value: 'all' });
+			carMakes.unshift({ label: 'Tất cả', value: 'all' });
 		}
 	}, [addAll]);
 
