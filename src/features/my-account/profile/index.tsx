@@ -87,7 +87,7 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 
 	return (
 		<>
-			<Flex gap='4rem'>
+			<Flex gap='4rem' direction={{ base: 'column', md: 'row' }} className='w-full'>
 				<Space mt='4rem' />
 				<ProfilePhoto
 					profileUrl={form.values.avatar}

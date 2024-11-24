@@ -5,6 +5,7 @@ import { AuthButtons } from './AuthButtons';
 import { usePathname } from 'next/navigation';
 import { APP_NAME } from '@/consts';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Props {
 	isAuthPage?: boolean;
@@ -29,8 +30,8 @@ export const Navbar = ({ isAuthPage }: Props) => {
 
 	return (
 		<header className='flex items-center justify-between p-4 md:px-10 fixed top-0 inset-x-0 z-50 bg-white'>
-			<Link href={'/'} className='text-2xl font-bold'>
-				{APP_NAME}
+			<Link href={'/'} className='h-12 relative aspect-video'>
+				<Image src='/logo.png' alt={APP_NAME} fill className='object-contain' />
 			</Link>
 			<nav className='hidden md:block'>
 				<ul className='flex space-x-4'>

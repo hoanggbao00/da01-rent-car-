@@ -31,7 +31,13 @@ export const AccountLayout = ({ children }: Props) => {
 	return (
 		<Container size='xl' my='4rem'>
 			<Flex>
-				<Card withBorder mah={300} w='300px' style={{ zIndex: 1 }}>
+				<Card
+					withBorder
+					mah={300}
+					w='300px'
+					style={{ zIndex: 1 }}
+					className='!hidden md:!block'
+				>
 					<Box h='60px' bg='orange.6'>
 						<Title order={4} ta='center' py={16} c='white'>
 							{user?.email}
@@ -68,7 +74,7 @@ export const AccountLayout = ({ children }: Props) => {
 						/>
 					</Box>
 				</Card>
-				<Box px='xl' w='calc(100% - 300px)'>
+				<Box px='xl' w={{ base: '100%', md: 'calc(100% - 300px)' }}>
 					{children}
 				</Box>
 			</Flex>

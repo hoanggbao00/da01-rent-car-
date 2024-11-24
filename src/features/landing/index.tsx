@@ -9,10 +9,10 @@ export default function LandingPage() {
 		<div className='bg-white md:px-10 px-4'>
 			<div className='lg:hidden flex flex-col justify-center items-center p-8'>
 				<h1 className='text-5xl font-bold mb-4 text-center'>
-					Xe thuê chất lượng
+					Đặt trọn niềm tin
 				</h1>
 				<p className='text-xl mb-8 text-center'>
-					Cam kết đồng hành cùng bạn với mọi nẻo đường xa
+					Hành trình trọn vẹn, Thuê xe dễ dàng, cuộc sống thênh thang
 				</p>
 				<div className='motion-preset-slide-right motion-duration-1000'>
 					<Link href={'/cars'}>
@@ -31,9 +31,9 @@ export default function LandingPage() {
 					className='w-full aspect-video object-cover'
 				/>
 				<div className='absolute inset-0 flex-col pt-32 items-center p-8 text-white bg-black/20 hidden lg:flex'>
-					<h1 className='text-5xl font-bold mb-4'>Xe thuê chất lượng</h1>
+					<h1 className='text-5xl font-bold mb-4'>Đặt trọn niềm tin</h1>
 					<p className='text-xl mb-8'>
-						Cam kết đồng hành cùng bạn với mọi nẻo đường xa
+						Hành trình trọn vẹn, Thuê xe dễ dàng, cuộc sống thênh thang
 					</p>
 					<div className='motion-preset-slide-right motion-duration-1500'>
 						<Link href={'/cars'}>
@@ -115,7 +115,7 @@ export default function LandingPage() {
 			<section className='max-w-5xl mx-auto mt-16 p-4'>
 				<h2 className='text-4xl font-bold mb-4'>Đội ngũ chúng tôi</h2>
 				<p className='text-gray-600'>
-				Chúng tôi cung cấp đội xe đa dạng bao gồm xe sedan, xe limousine...
+					Chúng tôi cung cấp đội xe đa dạng bao gồm xe sedan, xe limousine...
 				</p>
 				{/* Fleet content would go here */}
 			</section>

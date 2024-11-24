@@ -88,11 +88,11 @@ export default function AboutPage() {
 			</section>
 
 			{/* Footer */}
-			<footer className='bg-black text-white py-8'>
+			<footer className='bg-black text-white py-8 text-center'>
 				<div className='max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8'>
 					<div>
 						<div className='text-2xl font-bold mb-4'>{APP_NAME}</div>
-						<div className='flex items-center space-x-2'>
+						<div className='flex items-center space-x-2 w-fit mx-auto'>
 							<CgMail className='w-5 h-5' />
 							<input
 								type='email'
