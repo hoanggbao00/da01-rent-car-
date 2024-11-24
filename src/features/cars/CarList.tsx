@@ -1,13 +1,10 @@
 import { useFiltersContext } from '@/context/FiltersContext';
 import { IResCarProps } from '@/models/res.model';
-import { Box, Card, Flex, Loader, Space } from '@mantine/core';
+import { Box, Space } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { CarCard } from './CarCard';
 import { NoCarsFound } from './NoCarsFound';
-import { PaginationButtons } from './PaginationButtons';
 import CarListSkeleton from './CarListSkeleton';
-
-const itemsPerPage = 6;
 
 interface CarListProps {
 	cars: Partial<IResCarProps>[];
@@ -15,20 +12,8 @@ interface CarListProps {
 
 export const CarList = ({ cars }: CarListProps) => {
 	const { state } = useFiltersContext();
-	const [activePage, setPage] = useState(1);
 	const [visibleCars, setVisibleCars] = useState<Partial<IResCarProps>[]>([]);
 	const [loading, setLoading] = useState(true);
-
-	const total = Math.ceil(cars.length / itemsPerPage);
-
-	const handlePageChange = (value: number) => {
-		setLoading(true);
-		setPage(value);
-		const start = (value - 1) * itemsPerPage;
-		const end = start + itemsPerPage;
-		setLoading(false);
-		setVisibleCars(cars.slice(start, end));
-	};
 
 	useEffect(() => {
 		setLoading(true);
@@ -63,23 +48,17 @@ export const CarList = ({ cars }: CarListProps) => {
 		});
 
 		setLoading(false);
-		setVisibleCars(filteredCars.slice(0, itemsPerPage));
+		setVisibleCars(filteredCars);
 	}, [cars, state]);
 
 	return (
 		<Box w={'100%'}>
-			{visibleCars.length > itemsPerPage && (
-				<PaginationButtons
-					value={activePage}
-					handlePageChange={handlePageChange}
-					total={total}
-				/>
-			)}
-
 			{!loading && visibleCars.length === 0 && <NoCarsFound />}
 			{!loading && visibleCars.length >= 1 && (
 				<div>
-					<p className='text-2xl font-semibold mb-4'>Hiển thị: {visibleCars.length ?? 0} phương tiện</p>
+					<p className='text-2xl font-semibold mb-4'>
+						Hiển thị: {visibleCars.length ?? 0} phương tiện
+					</p>
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
 						{visibleCars.map((car) => (
 							<CarCard key={car.id} car={car} />
@@ -91,13 +70,6 @@ export const CarList = ({ cars }: CarListProps) => {
 			{loading && <CarListSkeleton />}
 
 			<Space my={8} />
-			{visibleCars.length > itemsPerPage && (
-				<PaginationButtons
-					value={activePage}
-					handlePageChange={handlePageChange}
-					total={total}
-				/>
-			)}
 		</Box>
 	);
 };
