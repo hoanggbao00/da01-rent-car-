@@ -2,7 +2,7 @@ import { SelectDate } from '@/components/SelectDate';
 import { ghCurrency, today, tomorrow } from '@/const';
 import { useAppContext } from '@/context/AppContext';
 import { useSupabase } from '@/context/SupabaseContext';
-import { IResCarProps } from '@/models/res.model';
+import { IResCarProps, IResUserProps } from '@/models/res.model';
 import {
 	Alert,
 	Box,
@@ -21,19 +21,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
-import classes from './Styles.module.css';
 import { useAuthContext } from '@/context/AuthContext';
 import { NOTIFICATION_MSG } from '@/consts';
-import { BiCalendar } from 'react-icons/bi';
 
 interface Props {
 	car: IResCarProps;
-	user: {
-		id: string;
-		firstName: string;
-		lastName: string;
-		regions: { name: string };
-	} | null;
+	user: IResUserProps | null;
 }
 export const BookingDetails = ({ car, user }: Props) => {
 	const supabase = useSupabase();
@@ -68,7 +61,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 
 		setTriggered(true);
 
-		if (!user?.firstName || !user.lastName || !user?.regions.name) {
+		if (!user?.firstName || !user.lastName || !user?.regions?.name) {
 			setProfileError(
 				'Vui lòng cập nhật đầy đủ thông tin tài khoản để tiến hành thuê phương tiện.'
 			);
@@ -198,11 +191,16 @@ export const BookingDetails = ({ car, user }: Props) => {
 			<Button
 				w='100%'
 				my='sm'
-				disabled={car.status !== 'available' || isProvider}
+				disabled={car.status !== 'available' || isProvider || !user}
 				onClick={handleBookNow}
 			>
 				Gửi yêu cầu thuê
 			</Button>
+			{!user && (
+				<Alert title='Thông báo' color='yellow' bg={'yellow.1'}>
+					Vui lòng đăng ký/ đăng nhập để tiến hành đặt xe
+				</Alert>
+			)}
 			{profileError && (
 				<Notification
 					icon={<IconX size='0.6rem' />}

@@ -33,7 +33,7 @@ export const getSearchedCars = async (
 	return cars as IResCarProps[];
 };
 
-export const getCarDetails = async (user: User, id: string) => {
+export const getCarDetails = async (id: string) => {
 	const supabase = createServerComponentClient<Database>({ cookies });
 
 	const { data: car, error } = await supabase
@@ -46,12 +46,7 @@ export const getCarDetails = async (user: User, id: string) => {
 		throw new Error('Failed to load car details');
 	}
 
-	const [userRes, providerRes, reviewsRes] = await Promise.all([
-		supabase
-			.from('users')
-			.select('id, firstName, lastName, regions(name)')
-			.match({ id: user.id })
-			.single(),
+	const [providerRes, reviewsRes] = await Promise.all([
 		supabase
 			.from('providers')
 			.select('companyName, avatar, email, phone')
@@ -63,13 +58,12 @@ export const getCarDetails = async (user: User, id: string) => {
 			.match({ car_id: car?.id }),
 	]);
 
-	if (userRes.error || providerRes.error || reviewsRes.error) {
+	if (providerRes.error || reviewsRes.error) {
 		throw new Error('Failed to load car details');
 	}
 
 	return {
 		car: car as IResCarProps,
-		user: userRes.data as any,
 		provider: providerRes.data as any,
 		reviews: reviewsRes.data as any,
 	};

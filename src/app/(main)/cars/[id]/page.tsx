@@ -12,10 +12,6 @@ interface CarDetailsPageProps {
 const CarDetailsPage = async ({ params }: CarDetailsPageProps) => {
   const session = await getSession();
 
-  if (!session) {
-    redirect(`/login`);
-  }
-
   await isProviderSession();
 
   if (!params.id) {
@@ -24,16 +20,15 @@ const CarDetailsPage = async ({ params }: CarDetailsPageProps) => {
 
   const {
     car,
-    user: userDetails,
     provider,
     reviews,
-  } = await getCarDetails(session.user, params.id);
+  } = await getCarDetails( params.id);
 
   return (
     <>
       <CarDetails
         car={car}
-        user={userDetails}
+        userId={session?.user.id}
         provider={provider}
         reviews={reviews || []}
       />

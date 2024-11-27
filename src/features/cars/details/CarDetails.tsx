@@ -1,6 +1,6 @@
 'use client';
 import { StatusRenderer } from '@/components/StatusRenderer';
-import { IResCarProps, IResReviewProps } from '@/models/res.model';
+import { IResCarProps, IResReviewProps, IResUserProps } from '@/models/res.model';
 import {
 	Box,
 	Card,
@@ -16,19 +16,15 @@ import { CarsCarousel } from './Carousel';
 import { Features } from './Features';
 import { ProviderDetails } from './ProviderDetails';
 import { Reviews } from './Reviews';
-import { BiCalendar, BiCheck, BiMapPin } from 'react-icons/bi';
-import { DEFAULT_IMAGE } from '@/consts';
+import { BiCheck, BiMapPin } from 'react-icons/bi';
 import { fuelTypes } from '@/components/SelectFuelType';
+import { useEffect, useState } from 'react';
+import { getUserDetails } from '@/actions/users.actions';
 
 interface CarDetailsProps {
 	car: IResCarProps;
 	reviews: IResReviewProps[];
-	user: {
-		id: string;
-		firstName: string;
-		lastName: string;
-		regions: { name: string };
-	} | null;
+	userId?: string;
 	provider: {
 		companyName: string;
 		avatar: string;
@@ -39,15 +35,28 @@ interface CarDetailsProps {
 
 export const CarDetails = ({
 	car,
-	user,
 	provider,
+	userId,
 	reviews,
 }: CarDetailsProps) => {
+	const [user, setUser] = useState<IResUserProps | null>(null);
+
 	const isShow = false;
 	const fuelType = fuelTypes.find((type) => type.value === car.fuelType)?.label;
 
 	const transmission =
 		car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động';
+
+	useEffect(() => {
+		if (userId) {
+			const fetchUser = async () => {
+				const res = await getUserDetails(userId);
+				if (res.id) setUser(res);
+			};
+
+			fetchUser()
+		}
+	}, [userId]);
 
 	return (
 		<>
@@ -129,13 +138,13 @@ export const CarDetails = ({
 					{/* Map and Booking Summary */}
 					<div className='space-y-4'>
 						<div className='bg-white p-4 rounded-lg shadow'>
-						{provider && <ProviderDetails provider={provider} />}
+							{provider && <ProviderDetails provider={provider} />}
 							<div className='flex items-center mt-4'>
 								<BiMapPin className='w-5 h-5 text-blue-500' />
 								<span className='ml-2'>{car.regions.name}</span>
 							</div>
 						</div>
-						<BookingDetails car={car} user={user} />
+						<BookingDetails car={car} user={user || null} />
 					</div>
 				</div>
 				<Box className='max-w-7xl mx-auto'>
