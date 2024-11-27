@@ -12,10 +12,6 @@ interface CarDetailsPageProps {
 const CarDetailsPage = async ({ params }: CarDetailsPageProps) => {
   const session = await getSession();
 
-  if (!session) {
-    redirect(`/login`);
-  }
-
   await isProviderSession();
 
   if (!params.id) {
