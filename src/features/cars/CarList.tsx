@@ -57,7 +57,7 @@ export const CarList = ({ cars }: CarListProps) => {
 			{!loading && visibleCars.length >= 1 && (
 				<div>
 					<p className='text-2xl font-semibold mb-4'>
-						Hiển thị: {visibleCars.length ?? 0} phương tiện
+						Show: {visibleCars.length ?? 0} Vehicles
 					</p>
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
 						{visibleCars.map((car) => (

@@ -17,7 +17,7 @@ export function ProfileMenu() {
 
 	const handleSignOut = async () => {
 		await logOut();
-		toast.success('Đăng xuất thành công');
+		toast.success('Log out successfully');
 	};
 
 	useEffect(() => {
@@ -68,7 +68,7 @@ export function ProfileMenu() {
 					href={isProvider ? `/providers/${user?.id}` : '/my-account/profile'}
 					leftSection={<CgProfile size='0.8rem' />}
 				>
-					{isProvider ? 'Quản lý phương tiện' : 'Trang cá nhân'}
+					{isProvider ? 'Vehicle provider' : 'Profiles'}
 				</Menu.Item>
 				{!isProvider && (
 					<Menu.Item
@@ -76,7 +76,7 @@ export function ProfileMenu() {
 						href='/my-account/bookings'
 						leftSection={<IoCarSportSharp size='0.8rem' />}
 					>
-						Lịch sử thuê
+						Bookings History
 					</Menu.Item>
 				)}
 				<Menu.Divider />
@@ -88,7 +88,7 @@ export function ProfileMenu() {
 					color='red'
 					leftSection={<BiLogOutCircle size='1rem' />}
 				>
-					Đăng xuất
+					Log out
 				</Menu.Item>
 			</Menu.Dropdown>
 		</Menu>

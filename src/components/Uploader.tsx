@@ -41,7 +41,7 @@ export const Uploader = ({ onUpload, options }: Props) => {
           }
           return (
             <Button variant="outline" onClick={handleOnClick}>
-              Tải ảnh lên
+              Upload Image
             </Button>
           );
         }}

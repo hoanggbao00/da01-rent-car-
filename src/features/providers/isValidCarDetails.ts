@@ -24,7 +24,7 @@ export const isValidCarDetails = (
     !carDetails.pricePerDay ||
     !carDetails.minimumRentalPeriodInDays
   ) {
-    return { isValid: false, message: 'Vui lòng nhập tất cả các trường' };
+    return { isValid: false, message: 'Please fill in all the fields' };
   }
 
   return { isValid: true, message: '' };

@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react';
 const defaultData = [
 	{
 		key: 'bookings',
-		title: 'Yêu cầu đợi duyệt',
+		title: 'Request Pending',
 		icon: <IconAlertCircle color='green'/>,
 		value: 0,
 		color: 'green',
@@ -30,7 +30,7 @@ const defaultData = [
 	},
 	{
 		key: 'cars',
-		title: 'Số lượng xe',
+		title: 'Number of cars',
 		icon: <IconCar color='orange'/>,
 		value: 0,
 		color: 'orange',
@@ -39,7 +39,7 @@ const defaultData = [
 
 	{
 		key: 'reviews',
-		title: 'Số lượng đánh giá',
+		title: 'Number of reviews',
 		icon: <IconMessage2 color='indigo'/>,
 		value: 0,
 		color: 'indigo',
@@ -48,7 +48,7 @@ const defaultData = [
 
 	{
 		key: 'users',
-		title: 'Khách hàng đã thuê',
+		title: 'Customers',
 		icon: <IconUsers color='red'/>,
 		value: 0,
 		color: 'red',

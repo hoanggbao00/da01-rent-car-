@@ -88,7 +88,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					.select();
 
 				if (data) {
-					toast.success('Đã thêm phương tiện.');
+					toast.success('Add successfully.');
 					resetState();
 					close();
 					refresh();
@@ -96,7 +96,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 
 				if (error) {
 					toast.error(
-						'Có lỗi xảy ra khi thêm phương tiện. Vui lòng thử lại sau'
+						'Something went wrong'
 					);
 				}
 			}
@@ -114,7 +114,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					.select();
 
 				if (data) {
-					toast.success('Cập nhật thành công');
+					toast.success('Update successfully.');
 					resetState();
 					close();
 					refresh();
@@ -122,7 +122,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 
 				if (error) {
 					toast.error(
-						'Có lỗi xảy ra khi lưu phương tiện. Vui lòng thử lại sau'
+						'Something went wrong'
 					);
 				}
 			}
@@ -138,7 +138,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 				size='xl'
 				opened={opened}
 				onClose={close}
-				title='Thêm phương tiện'
+				title={carDetails ? 'Update Car' : 'Add New Car'}
 				// without this prop, opening the drawer in prod will throw a client side exception
 				transitionProps={{
 					transition: 'slide-left',
@@ -205,29 +205,29 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 
 					<YearPickerInput
 						required={!carDetails.year}
-						label='Năm sản xuất'
-						placeholder='Năm sản xuất'
+						label='Year'
+						placeholder='Year'
 						value={new Date(carDetails.year, 0, 1)}
 						maxDate={today}
 						onChange={(value) => updateProperty('year', value?.getFullYear())}
 					/>
 					<Box>
-						<Input.Label>Loại cần số</Input.Label>
+						<Input.Label>Transmission</Input.Label>
 						<br />
 						<SegmentedControl
 							w='100%'
 							value={carDetails.transmission}
 							onChange={(value) => updateProperty('transmission', value)}
 							data={[
-								{ label: 'Số tự động', value: 'automatic' },
-								{ label: 'Số thủ công', value: 'manual' },
+								{ label: 'Automatic', value: 'automatic' },
+								{ label: 'Manual', value: 'manual' },
 							]}
 						/>
 					</Box>
 
 					<Box>
 						<Input.Label required={!carDetails.engineCapacity}>
-							Dung tích máy
+							Engine Capacity
 						</Input.Label>
 						<Input
 							type='text'
@@ -244,7 +244,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					/>
 
 					<NumberInput
-						label='Chỗ ngồi'
+						label='Seat'
 						required={!carDetails.seatingCapacity}
 						step={1}
 						min={1}
@@ -253,7 +253,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					/>
 
 					<NumberInput
-						label='Số cốp'
+						label='Number of bags'
 						required={!carDetails.numberOfBags}
 						step={1}
 						min={1}
@@ -262,11 +262,11 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					/>
 
 					<Box w='100%'>
-						<Input.Label required={!carDetails.color}>Màu</Input.Label>
+						<Input.Label required={!carDetails.color}>Color</Input.Label>
 						<Input
 							w='100%'
 							type='text'
-							placeholder='Ví dụ: Đen'
+							placeholder='Example: Blue'
 							value={carDetails.color}
 							onChange={(e) => updateProperty('color', e.target.value)}
 						/>
@@ -276,10 +276,10 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 				<Group grow my='sm'>
 					<Box>
 						<Input.Label>
-							Các tính năng khác. Ngăn cách bởi dấu {'"|"'}
+							Other Features split with {'"|"'}
 						</Input.Label>
 						<Textarea
-							placeholder='Ví dụ: Bluetooth | Camera | Màn hình cảm ứng '
+							placeholder='Example: Bluetooth | Camera | Android auto '
 							defaultValue={carDetails.otherFeatures.join(' | ')}
 							onChange={(e) => handleAddOtherFeatures(e.target.value)}
 						/>
@@ -292,11 +292,11 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 						onChange={(e) =>
 							updateProperty('acAvailable', e.currentTarget.checked)
 						}
-						label='Có điều hòa'
+						label='Ac available'
 						color='orange'
 					/>
 					<Checkbox
-						label='Điều hòa có hoạt động'
+						label='AC working'
 						color='orange'
 						disabled={!carDetails.acAvailable}
 						checked={carDetails.acAvailable && carDetails.acWorking}
@@ -308,7 +308,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 
 				<Group grow pt='xl'>
 					<NumberInput
-						label='Giá theo ngày'
+						label='Price per day'
 						required={!carDetails.pricePerDay}
 						value={carDetails.pricePerDay}
 						onChange={(value) => updateProperty('pricePerDay', value)}
@@ -317,7 +317,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 				<Space pt='xl' />
 				<GridLayout>
 					<NumberInput
-						label='Ngày thuê tối thiểu'
+						label='Minium rental period'
 						required={!carDetails.minimumRentalPeriodInDays}
 						step={1}
 						min={1}
@@ -328,7 +328,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 					/>
 
 					<NumberInput
-						label='Số ngày thuê tối đa'
+						label='Maximum rental period'
 						step={1}
 						min={1}
 						value={carDetails.maximumRentalPeriodInDays}
@@ -340,7 +340,7 @@ export function AddOrEditCar({ openButton, mode, opened, open, close }: Props) {
 
 				<Flex justify='flex-end' my='lg'>
 					<Button onClick={handleAddNewCar} miw='200px'>
-						{mode === 'new' ? 'Thêm phương tiện' : 'Lưu'}
+						{mode === 'new' ? 'Add' : 'Save'}
 					</Button>
 				</Flex>
 			</Drawer>

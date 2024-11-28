@@ -45,7 +45,7 @@ export const CarDetails = ({
 	const fuelType = fuelTypes.find((type) => type.value === car.fuelType)?.label;
 
 	const transmission =
-		car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động';
+		car.transmission === 'manual' ? 'Manual' : 'Automatic';
 
 	useEffect(() => {
 		if (userId) {
@@ -93,33 +93,33 @@ export const CarDetails = ({
 						<div className='bg-white p-4 rounded-lg shadow'>
 							<ul className='space-y-2'>
 								<li className='flex justify-between'>
-									<span>Năm sản xuất</span>
+									<span>Year</span>
 									<span>{car.year}</span>
 								</li>
 								<li className='flex justify-between'>
-									<span>Loại phương tiện</span>
+									<span>Car Type</span>
 									<span>{car.type}</span>
 								</li>
 								<li className='flex justify-between'>
-									<span>Màu</span>
+									<span>Color</span>
 									<span>{car.color}</span>
 								</li>
 								<li className='flex justify-between'>
-									<span>Loại thuê</span>
-									<span>Theo ngày</span>
+									<span>Rent Type</span>
+									<span>Rent per day</span>
 								</li>
 								<li className='flex justify-between'>
-									<span>Loại nhiên liệu</span>
+									<span>Fuel</span>
 									<span>{fuelType}</span>
 								</li>
 								<li className='flex justify-between'>
-									<span>Điều hòa</span>
-									<span>{car.acAvailable ? 'Có' : 'Không'}</span>
+									<span>AC Available</span>
+									<span>{car.acAvailable ? 'Yes' : 'None'}</span>
 								</li>
 							</ul>
 						</div>
 						<div className='bg-white p-4 rounded-lg shadow'>
-							<p>Các tính năng khác</p>
+							<p>Other Features</p>
 							<Divider mb={6} />
 							<ul className='space-y-2'>
 								{car.otherFeatures?.map((feature, index) => (
@@ -129,7 +129,7 @@ export const CarDetails = ({
 									</li>
 								))}
 								{car.otherFeatures?.length === 0 && (
-									<p className='text-gray-500'>Không có</p>
+									<p className='text-gray-500'>None</p>
 								)}
 							</ul>
 						</div>
@@ -152,7 +152,7 @@ export const CarDetails = ({
 						mt='md'
 						label={
 							<Title order={3} className='text-muted'>
-								Lượt đánh giá
+								Reviews
 							</Title>
 						}
 					/>
@@ -185,7 +185,7 @@ export const CarDetails = ({
 
 							<Box my='lg'>
 								<Title order={5} my='xs'>
-									Thông tin phương tiện
+									Car Details
 								</Title>
 
 								<Text size='sm' color='gray.6'>

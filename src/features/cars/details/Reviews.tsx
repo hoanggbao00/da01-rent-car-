@@ -30,10 +30,10 @@ export const Reviews = ({ reviews: _reviews, car_id, provider_id }: Props) => {
 
 		if (isSucess) {
 			setInput('');
-			toast.success('Gửi đánh giá thành công');
+			toast.success('Reviews sent successfully');
 			setReviews([...reviews, { ...isSucess }]);
 		} else {
-			toast.error('Có lỗi xảy ra');
+			toast.error('Something went wrong!');
 		}
 
 		setLoading(false);
@@ -50,7 +50,7 @@ export const Reviews = ({ reviews: _reviews, car_id, provider_id }: Props) => {
 			{session?.user.id && session.user.user_metadata.role !== 'provider' && (
 				<div className='flex flex-col gap-2 items-end group'>
 					<Textarea
-						placeholder='Thêm mới đánh giá của bạn cho phương tiện này'
+						placeholder='Add your review here...'
 						value={input}
 						onChange={(e) => setInput(e.target.value)}
 						w={'100%'}
@@ -70,12 +70,12 @@ export const Reviews = ({ reviews: _reviews, car_id, provider_id }: Props) => {
 						disabled={loading || !input}
 						onClick={handleAddReview}
 					>
-						Gửi đánh giá
+						Send Review
 					</Button>
 				</div>
 			)}
 			<Divider my={'xs'} />
-			{reviews.length === 0 && <i>Chưa có đánh giá cho phương tiện này</i>}
+			{reviews.length === 0 && <i>This car has no reviews</i>}
 			<div className='flex flex-col gap-4'>
 				{reviews.map((review) => (
 					<ReviewCard

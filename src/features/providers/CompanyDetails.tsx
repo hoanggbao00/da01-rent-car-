@@ -70,7 +70,7 @@ export const CompanyDetails = ({
 			<Box style={{ flexGrow: 1 }}>
 				{!isEditMode && (
 					<Title c='gray.6' mt='2rem'>
-						Tạo mới tài khoản cho thuê
+						Add Provider Account
 					</Title>
 				)}
 				<ProfilePhoto
@@ -80,22 +80,22 @@ export const CompanyDetails = ({
 				<Space mt='2rem' />
 				<Group grow>
 					<Box>
-						<Input.Label>Tên doanh nghiệp</Input.Label>
+						<Input.Label>Company Name</Input.Label>
 						<Input
 							type='text'
-							placeholder='Công ty ABC'
+							placeholder='ABC Company'
 							value={companyDetails.companyName}
 							onChange={(event) =>
 								updateDetails('companyName', event.currentTarget.value)
 							}
 						/>
 						{isNext && !companyDetails.companyName && (
-							<Input.Error>Vui lòng nhập tên doanh nghiệp</Input.Error>
+							<Input.Error>Please fill company name</Input.Error>
 						)}
 					</Box>
 
 					<Box>
-						<Input.Label>Số kinh doanh</Input.Label>
+						<Input.Label>Business Registration Number</Input.Label>
 						<Input
 							type='text'
 							placeholder='BNXXXXXXXXXX'
@@ -108,13 +108,13 @@ export const CompanyDetails = ({
 							}
 						/>
 						{isNext && !companyDetails.businessRegistrationNumber && (
-							<Input.Error>Vui lòng nhập số kinh doanh</Input.Error>
+							<Input.Error>Please fill business registration number</Input.Error>
 						)}
 					</Box>
 				</Group>
 				<Group grow>
 					<Box>
-						<Input.Label>Tên người liên hệ</Input.Label>
+						<Input.Label>Contact Name</Input.Label>
 						<Input
 							type='text'
 							placeholder='John Champion'
@@ -124,11 +124,11 @@ export const CompanyDetails = ({
 							}
 						/>
 						{isNext && !companyDetails.contactName && (
-							<Input.Error>Vui lòng nhập tên người liên hệ</Input.Error>
+							<Input.Error>Please fill in contact name</Input.Error>
 						)}
 					</Box>
 					<Box my='sm'>
-						<Input.Label>Số điện thoại liên hệ</Input.Label>
+						<Input.Label>Contact Phone</Input.Label>
 						<Input
 							type='text'
 							placeholder='0362554000'
@@ -138,7 +138,7 @@ export const CompanyDetails = ({
 							}
 						/>
 						{isNext && !companyDetails.phone && (
-							<Input.Error>Vui lòng nhập số điện thoại</Input.Error>
+							<Input.Error>Please fill in contact phone</Input.Error>
 						)}
 					</Box>
 				</Group>
@@ -147,7 +147,7 @@ export const CompanyDetails = ({
 						my='xs'
 						label={
 							<Title order={4} className='text-default'>
-								Địa chỉ
+								Address
 							</Title>
 						}
 						labelPosition='center'
@@ -162,7 +162,7 @@ export const CompanyDetails = ({
 								}}
 							/>
 							{isNext && companyDetails.region_code === -1 && (
-								<Input.Error>Vui lòng chọn Tỉnh/ Thành phố</Input.Error>
+								<Input.Error>Please select region</Input.Error>
 							)}
 						</Box>
 					</Group>
@@ -177,7 +177,7 @@ export const CompanyDetails = ({
 							radius='xl'
 							size='md'
 						>
-							<Text mr='xs'>Tiếp tục</Text> <BsArrowRight />
+							<Text mr='xs'>Next</Text> <BsArrowRight />
 						</Button>
 					</Flex>
 				)}

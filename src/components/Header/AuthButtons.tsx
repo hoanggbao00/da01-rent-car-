@@ -50,14 +50,14 @@ export const AuthButtons = () => {
 							href={'/login'}
 							w={{ base: '300px', md: '150px' }}
 						>
-							Đăng nhập
+							Login
 						</Menu.Item>
 						<Menu.Item
 							component={Link}
 							href='/signup'
 							w={{ base: '300px', md: '150px' }}
 						>
-							Đăng ký
+							Sign Up
 						</Menu.Item>
 					</Menu.Dropdown>
 				</Menu>

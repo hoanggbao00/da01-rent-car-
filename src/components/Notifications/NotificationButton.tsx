@@ -39,9 +39,9 @@ export default function NotificationButton({
 			</Popover.Target>
 			<Popover.Dropdown className='!p-2'>
 				<Title order={4} className='flex items-center justify-between'>
-					Thông báo
+					Notifications
 					<Button onClick={onReadNotification} size='xs' variant='outline'>
-						Đánh dấu đã đọc
+						Mark as read
 					</Button>
 				</Title>
 				<Divider className='my-2' />
@@ -51,12 +51,12 @@ export default function NotificationButton({
 							<Loader size={'md'} />
 						</div>
 					)}
-					{notifications.length === 0 && (
+					{!isLoading && notifications.length === 0 && (
 						<Text size='xl' className='w-full text-center'>
-							Không có thông báo nào
+							No Notifications
 						</Text>
 					)}
-					{notifications.map((notification) => (
+					{!isLoading && notifications.map((notification) => (
 						<NotificationCard
 							key={notification.id}
 							notification={notification}

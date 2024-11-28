@@ -3,12 +3,12 @@ import { Select } from '@mantine/core';
 import { ReactNode, useEffect } from 'react';
 
 export const fuelTypes = [
-  { label: 'Tất cả', value: 'Any' },
+  { label: 'All', value: 'Any' },
   { label: 'Gasoline', value: 'Gasoline' },
   { label: 'Diesel', value: 'Diesel' },
   { label: 'LPG', value: 'LPG' },
   { label: 'CNG', value: 'CNG' },
-  { label: 'Điện', value: 'Electric' },
+  { label: 'Electric', value: 'Electric' },
 ];
 
 interface Props {
@@ -35,7 +35,7 @@ export const SelectFuelType = ({
   return (
     <Select
       width="100%"
-      label={label || 'Loại xăng/ dầu'}
+      label={label || 'Fuel Type'}
       placeholder="Gasoline"
       required={required}
       data={fuelTypes}
@@ -43,7 +43,7 @@ export const SelectFuelType = ({
       onChange={onChange}
       searchable
       maxDropdownHeight={280}
-      nothingFoundMessage="Không tìm thấy"
+      nothingFoundMessage="Not found"
       filter={optionsFilter}
     />
   );

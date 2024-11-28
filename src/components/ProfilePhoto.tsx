@@ -13,7 +13,7 @@ export const ProfilePhoto = ({ updateProfile, profileUrl }: Props) => {
     const info: any = result?.info;
     await updateProfile(info.secure_url);
     widget.close();
-    toast.success('Tải ảnh lên thành công!\n Nhấn lưu để cập nhật!');
+    toast.success('Update profile successfully.');
   };
 
   return (

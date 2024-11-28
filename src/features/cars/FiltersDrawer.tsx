@@ -67,7 +67,7 @@ export const FiltersDrawer = () => {
 				}}
 			>
 				<Flex w={'100%'} align='center' justify='space-between'>
-					<Title order={4}>Bộ lọc</Title>
+					<Title order={4}>Filters</Title>
 					<ResetFiltersButton />
 				</Flex>
 				<SelectRegion
@@ -87,7 +87,7 @@ export const FiltersDrawer = () => {
 					color='blue.5'
 					mt={16}
 				>
-					Tim kiếm
+					Search
 				</Button>
 				<SelectCarType addAny={true} />
 				<PriceRange />
@@ -104,7 +104,7 @@ export const FiltersDrawer = () => {
 			>
 				<IconFilterCog size='14px' />{' '}
 				<Text component='span' mx={2}>
-					Mở bộ lọc
+					Open Filter
 				</Text>
 			</Button>
 		</>

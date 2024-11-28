@@ -44,10 +44,10 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 			const { error } = await addUserAsync(updatedDetails);
 
 			if (error) {
-				toast.error('Có lỗi khi cập nhật thông tin');
+				toast.error('Something went wrong');
 				setIsUpdating(false);
 			} else {
-				toast.success('Cập nhật thông tin thành công');
+				toast.success('Sign up successfully');
 				setIsUpdating(false);
 				setTimeout(() => {
 					refresh();
@@ -70,10 +70,10 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 
 				const { error } = await updateUserAsync(updatedDetails, id);
 				if (error) {
-					toast.error('Có lỗi xảy ra khi cập nhật thông tin');
+					toast.error('Something went wrong');
 					setIsUpdating(false);
 				} else {
-					toast.success('Cập nhật thành công');
+					toast.success('Update account successfully');
 					setIsUpdating(false);
 					refresh();
 				}
@@ -95,7 +95,7 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 				/>
 				<Box style={{ flexGrow: 1 }}>
 					<Title c='gray.6' mb='4rem'>
-						Trang cá nhân
+						Profile
 					</Title>
 
 					<form onSubmit={form.onSubmit(() => handleUpdateProfile())}>
@@ -111,8 +111,8 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 
 						<Group grow>
 							<TextInput
-								label='Họ và tên đệm'
-								placeholder='Nhập họ và tên đệm'
+								label='First Name'
+								placeholder='Madison'
 								value={form.values.firstName}
 								onChange={(event) =>
 									form.setFieldValue('firstName', event.currentTarget.value)
@@ -121,8 +121,8 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 							/>
 
 							<TextInput
-								label='Tên'
-								placeholder='Nhập tên của bạn'
+								label='Last Name'
+								placeholder='John'
 								value={form.values.lastName}
 								onChange={(event) =>
 									form.setFieldValue('lastName', event.currentTarget.value)
@@ -141,7 +141,7 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 										return new Date(input);
 									}}
 									valueFormat='DD/MM/YYYY'
-									label='Ngày sinh'
+									label='Birthday'
 									placeholder='DD/MM/YYYY'
 									value={
 										form.values.dateOfBirth
@@ -155,10 +155,10 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 								/>
 							</Box>
 							<Box my='sm'>
-								<Input.Label>Số điện thoại</Input.Label>
+								<Input.Label>Phone Number</Input.Label>
 								<Input
 									type='text'
-									placeholder='0362554000'
+									placeholder=''
 									value={form.values.phone}
 									onChange={(event) =>
 										form.setFieldValue('phone', event.currentTarget.value)
@@ -169,12 +169,12 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 						</Group>
 
 						<Box my='sm'>
-							<Input.Label mr={16}>Giới tính</Input.Label>
+							<Input.Label mr={16}>Gender</Input.Label>
 							<SegmentedControl
 								data={[
-									{ label: 'Nam', value: 'male' },
-									{ label: 'Nữ', value: 'female' },
-									{ label: 'Khác', value: 'other' },
+									{ label: 'Male', value: 'male' },
+									{ label: 'Female', value: 'female' },
+									{ label: 'Other', value: 'other' },
 								]}
 								value={form.values.gender}
 								onChange={(value) => form.setFieldValue('gender', value)}
@@ -183,7 +183,7 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 
 						<Box my='lg'>
 							<Title order={4} className='text-muted'>
-								Địa chỉ
+								Address
 							</Title>
 
 							<Group grow>
@@ -205,7 +205,7 @@ export const Profile = ({ userDetails, email, id }: ProfileProps) => {
 							overlayProps={{ radius: 'sm', blur: 2 }}
 						/>
 						<Button type='submit' radius='sm' disabled={isUpdating}>
-							{isUpdating ? 'Đang lưu...' : 'Lưu'}
+							{isUpdating ? 'Submitting...' : 'Save'}
 						</Button>
 					</form>
 				</Box>

@@ -66,7 +66,7 @@ export default function BookingFormLanding() {
 						type='submit'
 						className='w-full bg-sky-400 hover:bg-sky-600 transition-colors text-white py-2 rounded-md'
 					>
-						Khám phá ngay
+						Booking Now
 					</button>
 				</form>
 			</div>

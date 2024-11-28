@@ -104,13 +104,13 @@ export const LoginDetails = ({
 				/>
 				<Box style={{ flexGrow: 1 }}>
 					<Title c='gray.6' mt='2rem'>
-						Thông tin đăng nhập
+						Account Details
 					</Title>
 					<Space mt='2rem' />
 
 					<Group grow>
 						<Box>
-							<Input.Label>Địa chỉ Email</Input.Label>
+							<Input.Label>Email</Input.Label>
 							<Input
 								type='email'
 								placeholder='email@gmail.com'
@@ -120,7 +120,7 @@ export const LoginDetails = ({
 								}
 							/>
 							{isCreate && !companyDetails.email && (
-								<Input.Error>Vui lòng nhập địa chỉ email</Input.Error>
+								<Input.Error>Please enter your email</Input.Error>
 							)}
 						</Box>
 					</Group>
@@ -128,7 +128,7 @@ export const LoginDetails = ({
 					<Space mt='1rem' />
 					<Group grow>
 						<Box>
-							<Input.Label>Mật khẩu</Input.Label>
+							<Input.Label>Password</Input.Label>
 							<PasswordInput
 								value={password}
 								onChange={(e) => setPassword(e.currentTarget.value)}
@@ -136,7 +136,7 @@ export const LoginDetails = ({
 							/>
 						</Box>
 						<Box>
-							<Input.Label>Nhập lại mật khẩu</Input.Label>
+							<Input.Label>Confirm Password</Input.Label>
 							<PasswordInput
 								value={confirmPassword}
 								onChange={(e) => setConfirmPassword(e.currentTarget.value)}
@@ -163,7 +163,7 @@ export const LoginDetails = ({
 							my='sm'
 						>
 							<BsArrowLeft />
-							<Text ml='xs'>Quay lại</Text>
+							<Text ml='xs'>Back</Text>
 						</Button>
 
 						<Button
@@ -172,7 +172,7 @@ export const LoginDetails = ({
 							size='md'
 							my='sm'
 						>
-							<Text ml='xs'>Tạo tài khoản doanh nghiệp</Text>
+							<Text ml='xs'>Create Provider Account</Text>
 						</Button>
 					</Flex>
 				</Box>

@@ -4,7 +4,6 @@ import { IReqProviderProps } from '@/models/req.model';
 import { IResProviderProps } from '@/models/res.model';
 import { updateProviderAsync } from '@/services/supabase.service';
 import {
-	ActionIcon,
 	Box,
 	Button,
 	Divider,
@@ -15,9 +14,7 @@ import {
 	Text,
 	Title,
 } from '@mantine/core';
-import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { BiLogOutCircle } from 'react-icons/bi';
 import { toast } from 'react-toastify';
 import { CompanyDetails } from './CompanyDetails';
 
@@ -52,7 +49,7 @@ export const MyAccount = ({ providerDetails }: Props) => {
 		const { error } = await updateProviderAsync(details, user?.id || '');
 
 		if (!error) {
-			toast.success('Cập nhật thông tin thành công');
+			toast.success('Update account successfully.');
 			setIsUpdating(false);
 		} else {
 			console.log(error);
@@ -64,17 +61,17 @@ export const MyAccount = ({ providerDetails }: Props) => {
 		const { email, oldPassword, newPassword, confirmPassword } = loginInfo;
 		if (!email) return;
 		if (newPassword !== confirmPassword) {
-			toast.error('Mật khẩu mới không khớp');
+			toast.error('Confirm password is incorrect.');
 			return;
 		}
 
 		const isSuccess = await updatePassword(email, oldPassword, newPassword);
 
 		if (!isSuccess) {
-			return toast.error('Mật khẩu cũ không đúng, vui lòng kiểm tra lại.');
+			return toast.error('Current password is incorrect.');
 		}
 
-		toast.success('Cập nhật mật khẩu mới thành công');
+		toast.success('Update password successfully.');
 	};
 
 	const handleChangeLoginInfo = (key: string, value: string) => {
@@ -113,14 +110,14 @@ export const MyAccount = ({ providerDetails }: Props) => {
 					my='sm'
 					disabled={isUpdating}
 				>
-					{isUpdating ? 'Đang lưu...' : 'Lưu'}
+					{isUpdating ? 'Saving...' : 'Save'}
 				</Button>
 			</Flex>
 
 			<Divider
 				label={
 					<Title order={4} className='text-default'>
-						Thông tin đăng nhập
+						Account Details
 					</Title>
 				}
 				labelPosition='center'
@@ -129,7 +126,7 @@ export const MyAccount = ({ providerDetails }: Props) => {
 
 			<Group grow>
 				<Box>
-					<Input.Label>Địa chỉ email</Input.Label>
+					<Input.Label>Email</Input.Label>
 					<Input
 						type='email'
 						placeholder='hello@example.com'
@@ -138,7 +135,7 @@ export const MyAccount = ({ providerDetails }: Props) => {
 					/>
 				</Box>
 				<Box>
-					<Input.Label>Mật khẩu hiện tại</Input.Label>
+					<Input.Label>Current Password</Input.Label>
 					<PasswordInput
 						placeholder='********'
 						value={loginInfo.oldPassword}
@@ -151,7 +148,7 @@ export const MyAccount = ({ providerDetails }: Props) => {
 
 			<Group grow>
 				<Box>
-					<Input.Label>Mật khẩu mới</Input.Label>
+					<Input.Label>New Password</Input.Label>
 					<PasswordInput
 						placeholder='********'
 						value={loginInfo.newPassword}
@@ -161,7 +158,7 @@ export const MyAccount = ({ providerDetails }: Props) => {
 					/>
 				</Box>
 				<Box>
-					<Input.Label>Nhập lại mật khẩu mới</Input.Label>
+					<Input.Label>Confirm New Password</Input.Label>
 					<PasswordInput
 						placeholder='********'
 						value={loginInfo.confirmPassword}
@@ -185,7 +182,7 @@ export const MyAccount = ({ providerDetails }: Props) => {
 					my='sm'
 					onClick={handleUpdatePassword}
 				>
-					<Text>Cập nhật</Text>
+					<Text>Save</Text>
 				</Button>
 			</Flex>
 		</>

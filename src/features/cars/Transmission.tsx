@@ -5,7 +5,7 @@ export const Transmission = () => {
   const { state, updateFilterProperty } = useFiltersContext();
   return (
     <>
-      <Text my={16}>Loại cần số</Text>
+      <Text my={16}>Transmission</Text>
 
       <SegmentedControl
         color="blue.5"
@@ -13,9 +13,9 @@ export const Transmission = () => {
         value={state.transmission}
         onChange={(value) => updateFilterProperty('transmission', value)}
         data={[
-          { label: 'Tất cả', value: 'any' },
-          { label: 'Số thủ công', value: 'manual' },
-          { label: 'Số tự động', value: 'automatic' },
+          { label: 'Any', value: 'any' },
+          { label: 'Manual', value: 'manual' },
+          { label: 'Automatic', value: 'automatic' },
         ]}
       />
     </>

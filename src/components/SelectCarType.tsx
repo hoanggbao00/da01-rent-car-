@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const carTypes = [
-  { label: 'Tất cả', value: 'any' },
+  { label: 'Any', value: 'any' },
   { label: 'Sedan', value: 'Sedan' },
   { label: 'Luxury Sedan', value: 'Luxury Sedan' },
   { label: 'Electric Sedan', value: 'Electric Sedan' },
@@ -45,14 +45,14 @@ export const SelectCarType = ({
   return (
     <Select
       width="100%"
-      label={label || 'Loại xe'}
+      label={label || 'Car Type'}
       placeholder="Sedan"
       data={carTypes}
       value={value ?? 'any'}
       onChange={onChange}
       maxDropdownHeight={280}
       required={required}
-      nothingFoundMessage="Không tìm thấy"
+      nothingFoundMessage="Not Found"
       filter={optionsFilter}
       searchable
     />

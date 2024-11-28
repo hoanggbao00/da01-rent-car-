@@ -18,7 +18,7 @@ export function StatusRenderer({ status, variant, className, size }: Props) {
   if (status === 'pending') {
     return (
       <Badge {...defaultProps} color="gray" title={pendingMessage}>
-        Đang chờ
+        Pending
       </Badge>
     );
   }
@@ -26,30 +26,30 @@ export function StatusRenderer({ status, variant, className, size }: Props) {
   if (status === 'booked') {
     return (
       <Badge {...defaultProps} color="orange" title={bookedMessage}>
-        Đang thuê
+        Booked
       </Badge>
     );
   }
 
   if (status === 'approved') {
     return (
-      <Badge {...defaultProps} color="green" title="Yêu cầu được chấp thuận">
-        Chấp thuận
+      <Badge {...defaultProps} color="green" title="Booking approved">
+        Approved
       </Badge>
     );
   }
 
   if (status === 'rejected') {
     return (
-      <Badge {...defaultProps} color="red" title={'Yêu cầu bị từ chối'}>
-        Bị từ chối
+      <Badge {...defaultProps} color="red" title={'Booking rejected'}>
+        Rejected
       </Badge>
     );
   }
 
   return (
     <Badge {...defaultProps} color="green">
-      Khả dụng
+      Available
     </Badge>
   );
 }

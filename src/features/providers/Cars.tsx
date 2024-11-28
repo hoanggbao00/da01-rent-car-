@@ -13,12 +13,12 @@ interface Props {
 
 const header = (
   <Table.Tr>
-    <Table.Th>Hình ảnh</Table.Th>
-    <Table.Th>Hãng</Table.Th>
+    <Table.Th>Image</Table.Th>
+    <Table.Th>Make</Table.Th>
     <Table.Th>Model</Table.Th>
-    <Table.Th>Năm SX</Table.Th>
-    <Table.Th>Loại xe</Table.Th>
-    <Table.Th>Trạng thái</Table.Th>
+    <Table.Th>Year</Table.Th>
+    <Table.Th>Type</Table.Th>
+    <Table.Th>Status</Table.Th>
   </Table.Tr>
 );
 
@@ -34,7 +34,7 @@ export const Cars = ({ cars }: Props) => {
         my="lg"
         label={
           <Title order={3} className="text-default">
-            Phương tiện ({cars?.length})
+            Vehicles ({cars?.length})
           </Title>
         }
       />
@@ -49,7 +49,7 @@ export const Cars = ({ cars }: Props) => {
               }}
               leftSection={<IconPlus />}
             >
-              Thêm phương tiện
+              Add
             </Button>
           </Group>
         }

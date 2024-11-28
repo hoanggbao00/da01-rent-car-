@@ -12,15 +12,15 @@ interface Props {
 }
 export const ROUTES = [
 	{
-		name: 'Trang chủ',
+		name: 'Home',
 		path: '/',
 	},
 	{
-		name: 'Phương tiện',
+		name: 'Vehicles',
 		path: '/cars',
 	},
 	{
-		name: 'Về chúng tôi',
+		name: 'About Us',
 		path: '/about-us',
 	},
 ];

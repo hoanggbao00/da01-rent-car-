@@ -9,8 +9,8 @@ export const FiltersContext = createContext<IFiltersContext>(undefined as any);
 const initialState: IFiltersState = {
 	type: 'any',
 	minPrice: 0,
-	maxPrice: 500000000,
-	minYear: 2000,
+	maxPrice: 50000000,
+	minYear: 1995,
 	maxYear: today.getFullYear(),
 	transmission: 'any',
 	fuelType: 'any',

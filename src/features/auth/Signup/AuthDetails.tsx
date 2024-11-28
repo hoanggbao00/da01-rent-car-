@@ -21,36 +21,36 @@ export const AuthDetails = ({ form }: Props) => {
       />
 
       <PasswordInput
-        label="Mật khẩu"
-        placeholder="Nhập mật khẩu"
+        label="Password"
+        placeholder="Password"
         value={form.values.password}
         onChange={(event) =>
           form.setFieldValue('password', event.currentTarget.value)
         }
         error={
           form.errors.password &&
-          'Độ dài mật khẩu dài ít nhất 6 ký tự'
+          'Password must be at least 6 characters long'
         }
         radius="md"
       />
       <PasswordInput
-        label="Nhập lại mật khẩu"
-        placeholder="Nhập lại mật khẩu"
+        label="Confirm Password"
+        placeholder="Confirm Password"
         value={form.values.confirmPassword}
         onChange={(event) =>
           form.setFieldValue('confirmPassword', event.currentTarget.value)
         }
-        error={form.errors.confirmPassword && 'Mật khẩu không khớp'}
+        error={form.errors.confirmPassword && 'Passwords do not match'}
         radius="md"
       />
 
       <Checkbox
-        label="Tôi chấp nhận điều khoản và chính sách"
+        label="I accept terms and conditions"
         checked={form.values.terms}
         onChange={(event) =>
           form.setFieldValue('terms', event.currentTarget.checked)
         }
-        error={form.errors.terms && 'Bạn cần chấp nhận các điều khoản chính sách'}
+        error={form.errors.terms && 'You must accept terms and conditions'}
       />
     </Stack>
   );

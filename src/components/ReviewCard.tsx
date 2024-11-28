@@ -11,7 +11,7 @@ interface Props {
 export const ReviewCard = ({ review, userId }: Props) => {
 	const name =
 		review.users!.id == userId
-			? 'Bạn'
+			? 'You'
 			: `${review.users?.firstName} ${review.users?.lastName}`;
 	const pathName = usePathname();
 	const isProvider = pathName.includes('providers');
@@ -25,7 +25,7 @@ export const ReviewCard = ({ review, userId }: Props) => {
 						{name}{' '}
 						{isProvider && (
 							<>
-								<span className='text-muted'>đã đánh giá</span>{' '}
+								<span className='text-muted'>has reviewed</span>{' '}
 								<Link href={`/cars/${review.cars?.id}`} className='hover:underline'>
 									{review.cars?.make} {review.cars?.model}
 								</Link>

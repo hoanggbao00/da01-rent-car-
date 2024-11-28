@@ -31,25 +31,25 @@ const data = [
 	{
 		icon: <IconDashboard size='1rem' />,
 		color: 'blue',
-		label: 'Thống kê',
+		label: 'Dashboard',
 		endpoint: '/',
 	},
 	{
 		icon: <IconCar size='1rem' />,
 		color: 'violet',
-		label: 'Xe của tôi',
+		label: 'Vehicle Management',
 		endpoint: 'cars',
 	},
 	{
 		icon: <IconMessage size='1rem' />,
 		color: 'orange',
-		label: 'Các bài đánh giá',
+		label: 'Reviews',
 		endpoint: 'reviews',
 	},
 	{
 		icon: <IconHome size='1rem' />,
 		color: 'yellow',
-		label: 'Trang chính',
+		label: 'Homepage',
 		endpoint: '../../cars',
 	},
 ];
@@ -155,11 +155,11 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 								className='text-muted'
 								style={{ cursor: 'pointer' }}
 							>
-								Đăng xuất
+								Log out
 							</Text>
 						</Flex>
 						<MainLink
-							label='Cài đặt tài khoản'
+							label='Profile Settings'
 							color='gray'
 							icon={<IconUser size='1rem' />}
 							link={`/providers/${user?.id}/my-account`}

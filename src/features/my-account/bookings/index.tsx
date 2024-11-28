@@ -24,12 +24,12 @@ interface Props {
 
 const header = (
   <Table.Tr>
-    <Table.Th>Ngày đặt</Table.Th>
-    <Table.Th>Xe</Table.Th>
-    <Table.Th>Ngày nhận</Table.Th>
-    <Table.Th>Ngày trả</Table.Th>
-    <Table.Th>Giá</Table.Th>
-    <Table.Th>Trạng thái</Table.Th>
+    <Table.Th>Booking Date</Table.Th>
+    <Table.Th>Vehicle</Table.Th>
+    <Table.Th>Pickup Date</Table.Th>
+    <Table.Th>Return Date</Table.Th>
+    <Table.Th>Price</Table.Th>
+    <Table.Th>Status</Table.Th>
   </Table.Tr>
 );
 
@@ -58,7 +58,7 @@ export const Bookings = ({ userId, bookings }: Props) => {
         labelPosition="left"
         label={
           <Title order={1} className="text-default" mb="lg">
-            Xe đã thuê ({bookings.length})
+            Booking Requested: ({bookings.length})
           </Title>
         }
       />
@@ -73,7 +73,7 @@ export const Bookings = ({ userId, bookings }: Props) => {
   ) : (
     <Card my="3rem">
       <Text fs="italic" ta="center">
-        Bạn chưa thuê xe nào!
+        You have no booking request!
       </Text>
     </Card>
   );

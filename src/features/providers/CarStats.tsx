@@ -27,7 +27,7 @@ export function CarStats({ cars }: Props) {
 							{stat.label}
 						</Text>
 						<div>
-							<Text className={classes.label}>Số lượng</Text>
+							<Text className={classes.label}>Quantity</Text>
 							<Text fz='xs' className={classes.value}>
 								{stat.value}
 							</Text>

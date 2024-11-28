@@ -30,11 +30,11 @@ export function Signup() {
 		const { error } = await signupWithEmailPassword(email, password);
 
 		if (error) {
-			toast.error('Có lỗi xảy ra khi đăng ký!');
+			toast.error('Something went wrong!');
 			setIsSubmitting(false);
 		} else {
 			setIsSubmitting(false);
-			toast.success('Đăng ký thành công!');
+			toast.success('Sign up successfully!');
 		}
 	};
 
@@ -49,18 +49,18 @@ export function Signup() {
 					<Box px='md' py='xl'>
 						<Paper maw='450px' radius='md' p='xl' mx='auto' my='xl' withBorder>
 							<Text size='lg' fw={500}>
-								Chào mừng tới <Logo />
+								Welcome to <Logo />
 							</Text>
 							<OAuthButtons />
 							<Divider
-								label='Hoặc tạo tài khoản bằng email'
+								label='Or continue with email'
 								labelPosition='center'
 								my='md'
 							/>
 
 							<form onSubmit={signupForm.onSubmit(() => handleSignUp())}>
 								<AuthDetails form={signupForm} />
-								<FormSubmitSection label='Đăng ký' />
+								<FormSubmitSection label='Sign Up' />
 							</form>
 
 							<Group mt='xl'>
@@ -71,7 +71,7 @@ export function Signup() {
 									color='dimmed'
 									size='xs'
 								>
-									Bạn có phương tiện muốn cho thuê? Tạo tài doanh nghiệp tại đây
+									Become a provider
 								</Anchor>
 							</Group>
 						</Paper>
@@ -89,7 +89,7 @@ export const FormSubmitSection = ({ label }: { label: string }) => {
 				{label}
 			</Button>
 			<Anchor component={Link} href='/login' type='button' c='dimmed' size='xs'>
-				Bạn đã có tài khoản? Đăng nhập ngay
+				Already have an account? Sign in
 			</Anchor>
 		</Group>
 	);

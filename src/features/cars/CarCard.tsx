@@ -9,14 +9,14 @@ import Link from 'next/link';
 import { MdEventSeat } from 'react-icons/md';
 import { BsArrowRight, BsFuelPump } from 'react-icons/bs';
 import { BiCheck } from 'react-icons/bi';
+import { PiMapPin } from 'react-icons/pi';
 
 interface CardProps {
 	car: Partial<IResCarProps>;
 }
 export const CarCard = ({ car }: CardProps) => {
 	const fuelType = fuelTypes.find((type) => type.value === car.fuelType)?.label;
-	const transmission =
-		car.transmission === 'manual' ? 'Số thủ công' : 'Số tự động';
+	const transmission = car.transmission === 'manual' ? 'Manual' : 'Automatic';
 
 	return (
 		<Card
@@ -26,7 +26,13 @@ export const CarCard = ({ car }: CardProps) => {
 			p={'md'}
 		>
 			<div className='flex gap-2 flex-col'>
-				<StatusRenderer status={car.status || 'available'} size='md' />
+				<div className='space-x-2'>
+					<StatusRenderer status={car.status || 'available'} size='md' />
+					<div className='text-gray-400 inline-block'>
+						<PiMapPin className='inline-block' />
+						<p className='inline-block'>{car.regions?.name}</p>
+					</div>
+				</div>
 				<div className='flex justify-end'>
 					<div className='w-full !aspect-video relative'>
 						<CarsCarousel images={car.images ?? []} />
@@ -49,19 +55,19 @@ export const CarCard = ({ car }: CardProps) => {
 							<span className='font-semibold'>
 								{car.pricePerDay?.toLocaleString()} {ghCurrency}
 							</span>
-							<span>/ngày</span>
+							<span>/day</span>
 						</div>
 					</div>
 					<div className='flex xl:items-center flex-col xl:flex-row gap-2'>
 						<div className='flex flex-1 gap-2 flex-wrap'>
 							<span
-								title='Số ghế'
+								title='Seat'
 								className='bg-gray-400/20 inline-flex gap-2 rounded-md items-center px-2 py-1'
 							>
 								<MdEventSeat /> {car.seatingCapacity}
 							</span>
 							<span
-								title='Loại nhiên liệu'
+								title='Fuel Type'
 								className='bg-gray-400/20 inline-flex gap-2 rounded-md items-center px-2 py-1'
 							>
 								<BsFuelPump /> {fuelType}
@@ -81,7 +87,7 @@ export const CarCard = ({ car }: CardProps) => {
 								href={`/cars/${car.id}`}
 								className='group-hover:block hidden text-sky-500 hover:text-sky-600 transition-colors motion-preset-slide-right bg-gray-400/20 px-4 rounded-md text-sm md:text-base w-fit'
 							>
-								Xem chi tiết <BsArrowRight className='inline-block' />
+								Book Now <BsArrowRight className='inline-block' />
 							</Link>
 						</div>
 					</div>

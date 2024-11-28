@@ -87,7 +87,7 @@ export const Bookings = ({ providerId }: Props) => {
 				my='lg'
 				label={
 					<Title order={4} className='text-default' mb='lg'>
-						Yêu cầu thuê &quot;{bookings[0].cars?.make}{' '}
+						Booking request for &quot;{bookings[0].cars?.make}{' '}
 						{bookings[0].cars?.model}&quot; ({bookings.length})
 					</Title>
 				}
@@ -104,7 +104,7 @@ export const Bookings = ({ providerId }: Props) => {
 		carId && (
 			<Card my='3rem'>
 				<Text fs='italic' ta='center'>
-					Chưa có lượt thuê
+					This car has no request
 				</Text>
 			</Card>
 		)

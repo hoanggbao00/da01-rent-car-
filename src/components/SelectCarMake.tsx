@@ -20,20 +20,20 @@ export function SelectCarMake({
 }: Props) {
 	useEffect(() => {
 		if (addAll && !carMakes.some((make) => make.value === 'all')) {
-			carMakes.unshift({ label: 'Tất cả', value: 'all' });
+			carMakes.unshift({ label: 'All', value: 'all' });
 		}
 	}, [addAll]);
 
 	return (
 		<Select
-			label={label || 'Hãng xe'}
+			label={label || 'Car Make'}
 			placeholder='Toyota'
 			data={carMakes.map((make) => ({ label: make.label, value: make.value }))}
 			value={value ?? 'all'}
 			onChange={onChange}
 			searchable
 			maxDropdownHeight={280}
-			nothingFoundMessage='Không tìm thấy'
+			nothingFoundMessage='Not found'
 			filter={optionsFilter}
 			required={required}
 		/>

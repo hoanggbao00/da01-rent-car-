@@ -9,15 +9,16 @@ export default function LandingPage() {
 		<div className='bg-white md:px-10 px-4'>
 			<div className='lg:hidden flex flex-col justify-center items-center p-8'>
 				<h1 className='text-5xl font-bold mb-4 text-center'>
-					Đặt trọn niềm tin
+					Luxury Limo Hire
 				</h1>
 				<p className='text-xl mb-8 text-center'>
-					Hành trình trọn vẹn, Thuê xe dễ dàng, cuộc sống thênh thang
+					We offer professional car rental & limousine services in our range of
+					high-end vehicles
 				</p>
 				<div className='motion-preset-slide-right motion-duration-1000'>
 					<Link href={'/cars'}>
 						<button className='bg-sky-500 text-white px-6 py-2 rounded-md !flex items-center gap-2 hover:motion-preset-confetti hover:motion-duration-1000'>
-							<BiCalendar /> Khám phá ngay
+							<BiCalendar /> Booking Now
 						</button>
 					</Link>
 				</div>
@@ -31,14 +32,15 @@ export default function LandingPage() {
 					className='w-full aspect-video object-cover'
 				/>
 				<div className='absolute inset-0 flex-col pt-32 items-center p-8 text-white bg-black/20 hidden lg:flex'>
-					<h1 className='text-5xl font-bold mb-4'>Đặt trọn niềm tin</h1>
+					<h1 className='text-5xl font-bold mb-4'>Luxury Limo Hire</h1>
 					<p className='text-xl mb-8'>
-						Hành trình trọn vẹn, Thuê xe dễ dàng, cuộc sống thênh thang
+						We offer professional car rental & limousine services in our range
+						of high-end vehicles
 					</p>
 					<div className='motion-preset-slide-right motion-duration-1500'>
 						<Link href={'/cars'}>
 							<button className='bg-sky-500 text-white px-6 py-2 rounded-md !flex items-center gap-2 hover:motion-preset-confetti hover:motion-duration-1000'>
-								<BiCalendar /> Khám phá ngay
+								<BiCalendar /> Booking Now
 							</button>
 						</Link>
 					</div>
@@ -53,33 +55,37 @@ export default function LandingPage() {
 
 			{/* Services Section */}
 			<section className='max-w-5xl mx-auto mt-16 p-4'>
-				<h2 className='text-4xl font-bold mb-8'>Dịch vụ</h2>
+				<h2 className='text-4xl font-bold mb-8'>Services</h2>
 				<p className='text-gray-600 mb-8'>
-					Chúng tôi mời bạn dùng thử dịch vụ của chúng tôi và chúng tôi đảm bảo
-					rằng bạn sẽ hoàn toàn hài lòng
+					We invite you to try our services, and we guarantee that you will be
+					completely satisfied
 				</p>
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 					{[
 						{
-							title: 'Đưa đón sân bay',
+							title: 'Airport transfers',
+
 							image: DEFAULT_IMAGE,
 							description:
-								'Với kiến ​​thức về lĩnh vực này và nhiều năm kinh nghiệm, đội ngũ của chúng tôi có chuyên môn cao để đáp ứng mọi dịch vụ đưa đón sân bay.',
+								'With knowledge of the field and years of expertise, our team is specialized to meet every airport transfer is possible.',
 						},
 						{
-							title: 'Hành trình dài',
+							title: 'Intercity trips',
+
 							image: DEFAULT_IMAGE,
 							description:
-								'Đồng hành cùng bạn với mọi nẻo đường trên toàn quốc.',
+								'Your transportation between cities with chauffeur on over the entire country.',
 						},
 						{
-							title: 'Đám cưới',
+							title: 'Wedding events',
+
 							image: DEFAULT_IMAGE,
 							description:
-								'Dịch vụ thân thiện và chu đáo của chúng tôi sẽ hoàn thiện toàn bộ trải nghiệm trong ngày đặc biệt của bạn.',
+								'Our friendly and attentive service completes the whole experience of your very special day.',
 						},
 						{
-							title: 'Gặp gỡ đối tác',
+							title: 'Business Meeting',
+
 							image: DEFAULT_IMAGE,
 							description:
 								'Hãy tập trung vào cuộc gặp với khách hàng và quên đi những thay đổi trên đường đi.',
@@ -102,7 +108,7 @@ export default function LandingPage() {
 								</div>
 								<Link href={'/about-us'}>
 									<button className='bg-sky-500 text-white px-4 hover:bg-sky-600 py-2 rounded-md'>
-										Xem thêm
+										Read More
 									</button>
 								</Link>
 							</div>
@@ -113,9 +119,10 @@ export default function LandingPage() {
 
 			{/* Our Fleet Section (beginning) */}
 			<section className='max-w-5xl mx-auto mt-16 p-4'>
-				<h2 className='text-4xl font-bold mb-4'>Đội ngũ chúng tôi</h2>
+				<h2 className='text-4xl font-bold mb-4'>Our Fleet</h2>
 				<p className='text-gray-600'>
-					Chúng tôi cung cấp đội xe đa dạng bao gồm xe sedan, xe limousine...
+					We offer an extensive fleet of vehicles including sedans, limousines
+					and coaches
 				</p>
 				{/* Fleet content would go here */}
 			</section>

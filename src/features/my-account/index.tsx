@@ -25,7 +25,7 @@ export const AccountLayout = ({ children }: Props) => {
 	const { logOut, user } = useAuthContext();
 	const handleSignOut = async () => {
 		await logOut();
-		toast.success('Đăng xuất thành công');
+		toast.success('Logout successfully');
 	};
 
 	return (
@@ -47,7 +47,7 @@ export const AccountLayout = ({ children }: Props) => {
 						<NavLink
 							component={Link}
 							href='/my-account/profile'
-							label={<Text c='gray.6'>Trang cá nhân</Text>}
+							label={<Text c='gray.6'>Profile</Text>}
 							leftSection={<CgProfile size='1.2rem' />}
 							py='md'
 							color='gray.6'
@@ -56,7 +56,7 @@ export const AccountLayout = ({ children }: Props) => {
 						<NavLink
 							component={Link}
 							href='/my-account/bookings'
-							label={<Text c='gray.6'>Lịch sử thuê</Text>}
+							label={<Text c='gray.6'>Bookings History</Text>}
 							leftSection={<IoCarSportSharp size='1.2rem' />}
 							py='md'
 						/>
@@ -68,7 +68,7 @@ export const AccountLayout = ({ children }: Props) => {
 									<BiLogOutCircle />
 								</ActionIcon>
 							}
-							label={<Text c='gray.6'>Đăng xuất</Text>}
+							label={<Text c='gray.6'>Logout</Text>}
 							py='md'
 							pl={8}
 						/>

@@ -7,14 +7,10 @@ import {
 	Alert,
 	Box,
 	Button,
-	Card,
 	Divider,
 	Flex,
 	Input,
 	Notification,
-	NumberInput,
-	Text,
-	Title,
 } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
 import Link from 'next/link';
@@ -63,13 +59,13 @@ export const BookingDetails = ({ car, user }: Props) => {
 
 		if (!user?.firstName || !user.lastName || !user?.regions?.name) {
 			setProfileError(
-				'Vui lòng cập nhật đầy đủ thông tin tài khoản để tiến hành thuê phương tiện.'
+				'Please update your information before booking'
 			);
 			return;
 		}
 
 		if (!pickupDate || !returnDate) {
-			return toast.warn('Vui lòng nhập ngày nhận và trả phương tiện');
+			return toast.warn('Please select dates before booking.');
 		}
 
 		const { data: isExist } = await supabase
@@ -82,7 +78,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 
 		if (isExist?.id) {
 			return toast.warn(
-				'Bạn đã tạo yêu cầu thuê xe này, vui lòng chờ phê duyệt.'
+				'You have already made a booking for this car.'
 			);
 		}
 
@@ -107,7 +103,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 			.update({ is_read: false })
 			.eq('id', car.provider_id!);
 
-		// gửi thông báo đến chủ xe
+		// gửi Notice đến chủ xe
 		await supabase.from('notifications').insert({
 			content: NOTIFICATION_MSG.BOOKING_SENT.key,
 			entity_name: `${car.make} ${car.model}`,
@@ -131,7 +127,7 @@ export const BookingDetails = ({ car, user }: Props) => {
 			console.log(error2);
 		} else {
 			toast.success(
-				'Yêu cầu thuê xe đã được gửi đi. Vui lòng đợi chủ xe duyệt'
+				'You have successfully made a booking for this car.'
 			);
 			setTimeout(() => {
 				refresh();
@@ -145,45 +141,45 @@ export const BookingDetails = ({ car, user }: Props) => {
 				<Box w={{ base: '100%', md: '50%' }}>
 					<SelectDate
 						value={pickupDate}
-						label='Ngày lấy xe'
+						label='Pickup Date'
 						minDate={today}
 						onChange={setPickupDate}
 					/>
-					{triggered && !pickupDate && <Input.Error>Chọn ngày</Input.Error>}
+					{triggered && !pickupDate && <Input.Error>Pick a date</Input.Error>}
 				</Box>
 				<Box w={{ base: '100%', md: '50%' }}>
 					<SelectDate
-						label='Ngày trả'
+						label='Return Date'
 						value={returnDate}
 						minDate={pickupDate ?? tomorrow}
 						onChange={setReturnDate}
 					/>
-					{triggered && !returnDate && <Input.Error>Chọn ngày</Input.Error>}
+					{triggered && !returnDate && <Input.Error>Pick a date</Input.Error>}
 				</Box>
 			</Flex>
 			<Divider my={12} />
 			<ul className='space-y-2'>
 				<li className='flex justify-between'>
-					<span>Ngày thuê tối thiểu</span>
+					<span>Minium rental period</span>
 					<span>{car.minimumRentalPeriodInDays}</span>
 				</li>
 				<li className='flex justify-between'>
-					<span>Ngày thuê tối đa</span>
+					<span>Maximum rental period</span>
 					<span>{car.maximumRentalPeriodInDays}</span>
 				</li>
 				<li className='flex justify-between'>
-					<span>Tổng ngày</span>
-					<span>{numOfDays} ngày</span>
+					<span>Total days</span>
+					<span>{numOfDays} days</span>
 				</li>
 				<li className='flex justify-between'>
-					<span>Giá theo ngày</span>
+					<span>Price per day</span>
 					<span>
 						{car.pricePerDay.toLocaleString()} {ghCurrency}
 					</span>
 				</li>
 			</ul>
 			<div className='flex justify-between mt-4'>
-				<span className='text-xl font-bold'>Tổng giá dự kiến:</span>
+				<span className='text-xl font-bold'>Total:</span>
 				<span className='text-xl font-bold'>
 					{(numOfDays * car.pricePerDay).toLocaleString()} {ghCurrency}
 				</span>
@@ -194,30 +190,30 @@ export const BookingDetails = ({ car, user }: Props) => {
 				disabled={car.status !== 'available' || isProvider || !user}
 				onClick={handleBookNow}
 			>
-				Gửi yêu cầu thuê
+				Sent Request
 			</Button>
 			{!user && (
-				<Alert title='Thông báo' color='yellow' bg={'yellow.1'}>
-					Vui lòng đăng ký/ đăng nhập để tiến hành đặt xe
+				<Alert title='Notice' color='yellow' bg={'yellow.1'}>
+					Please sign in to book this car
 				</Alert>
 			)}
 			{profileError && (
 				<Notification
 					icon={<IconX size='0.6rem' />}
 					c='red'
-					title='Thông báo'
+					title='Notice'
 					bg='red.1'
 					mb={6}
 				>
 					{profileError}
 					<Link href='/my-account/profile' style={{ display: 'block' }}>
-						Nhấn vào đây để cập nhật
+						Click here to update your profile
 					</Link>
 				</Notification>
 			)}
 			{isProvider && (
-				<Alert title='Thông báo' color='yellow' bg={'yellow.1'}>
-					Vui lòng chuyển sang tài khoản khách hàng để tiến hành đặt xe
+				<Alert title='Notice' color='yellow' bg={'yellow.1'}>
+					Please switch to customer account to book this car
 				</Alert>
 			)}
 		</div>

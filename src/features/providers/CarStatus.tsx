@@ -18,19 +18,19 @@ const statuses: {
 	icon: ReactNode;
 }[] = [
 	{
-		display: 'Khả dụng',
+		display: 'Available',
 		value: 'available',
 		color: 'green',
 		icon: <IconProgressCheck size={14} />,
 	},
 	{
-		display: 'Đang chờ duyệt',
+		display: 'Pending',
 		value: 'pending',
 		color: 'gray.6',
 		icon: <IconHourglassLow size={14} />,
 	},
 	{
-		display: 'Đã được thuê',
+		display: 'Booked',
 		value: 'booked',
 		color: 'red',
 		icon: <IconCalendarCheck size={14} />,
@@ -59,12 +59,12 @@ export function CarStatus({ status, id }: TableActionsProps) {
 			setIsUpdating(false);
 
 			if (data) {
-				toast.success('Cập nhật trạng thái thành công.');
+				toast.success('Update status successfully.');
 				refresh();
 			}
 
 			if (error) {
-				toast.error('Có lỗi xảy ra khi cập nhật trạng thái!');
+				toast.error('Something went wrong.');
 				console.log(error);
 			}
 		}
@@ -82,7 +82,7 @@ export function CarStatus({ status, id }: TableActionsProps) {
 			</Menu.Target>
 
 			<Menu.Dropdown>
-				<Menu.Label>Trạng thái</Menu.Label>
+				<Menu.Label>Status</Menu.Label>
 
 				{statuses.map((item) => (
 					<Menu.Item

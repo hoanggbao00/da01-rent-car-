@@ -46,7 +46,7 @@ export function Login(props: PaperProps) {
 				setNotRegistered(true);
 			} else {
 				if (data.user || data.session) {
-					toast.success('Đăng nhập thành công', {
+					toast.success('Login successfully', {
 						position: toast.POSITION.TOP_CENTER,
 					});
 					form.reset();
@@ -89,11 +89,11 @@ export function Login(props: PaperProps) {
 					overlayProps={{ radius: 'sm', blur: 2 }}
 				/>
 				<Text size='lg' fw={500}>
-					Xin chào,
+					Hello,
 				</Text>
 				<OAuthButtons />
 				<Divider
-					label='Hoặc tiếp tục bằng Email'
+					label='Or continue with email'
 					labelPosition='center'
 					my='lg'
 				/>
@@ -108,20 +108,19 @@ export function Login(props: PaperProps) {
 							onChange={(event) =>
 								form.setFieldValue('email', event.currentTarget.value)
 							}
-							error={form.errors.email && 'Email không hợp lệ'}
+							error={form.errors.email && 'Email is invalid'}
 							radius='md'
 						/>
 
 						<PasswordInput
 							required
-							label='Mật khẩu'
-							placeholder='Mật khẩu của bạn'
+							label='Password'
 							value={form.values.password}
 							onChange={(event) =>
 								form.setFieldValue('password', event.currentTarget.value)
 							}
 							error={
-								form.errors.password && 'Độ dài mật khẩu dài ít nhất 6 ký tự'
+								form.errors.password && 'Password must be at least 6 characters'
 							}
 							radius='md'
 						/>
@@ -131,7 +130,7 @@ export function Login(props: PaperProps) {
 
 					<Group justify='apart' mt='xl' style={{ flexDirection: 'column' }}>
 						<Button type='submit' radius='xl'>
-							Đăng nhập
+							Log in
 						</Button>
 						<Anchor
 							component={Link}
@@ -140,7 +139,7 @@ export function Login(props: PaperProps) {
 							c='dimmed'
 							size='xs'
 						>
-							Chưa có tài khoản? Đăng ký mới ngay.
+							Has no account? Sign up
 						</Anchor>
 					</Group>
 				</form>

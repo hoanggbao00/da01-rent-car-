@@ -80,7 +80,7 @@ export default function SideFilter(props: Props) {
 	return (
 		<div className='w-[300px] hidden lg:block bg-gray-300/20 p-4 rounded-2xl sticky top-20'>
 			<Flex align='center' justify='space-between'>
-				<Title order={4}>Tìm kiếm</Title>
+				<Title order={4}>Search</Title>
 				<ResetFiltersButton />
 			</Flex>
 			<SelectRegion
@@ -101,10 +101,10 @@ export default function SideFilter(props: Props) {
 				color='blue.5'
 				mt={16}
 			>
-				Tim kiếm
+				Search
 			</Button>
 			<Divider my='md' />
-			<Title order={4}>Bộ lọc</Title>
+			<Title order={4}>Filter</Title>
 			<SelectCarType
 				addAny={true}
 				onChange={handleCarTypeChange}

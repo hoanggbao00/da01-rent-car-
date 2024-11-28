@@ -20,8 +20,8 @@ export function SelectRegion({
   return (
     <Select
       width="50%"
-      label={label || 'Tỉnh/ Thành phố'}
-      placeholder="Chọn tỉnh/ thành phố"
+      label={label || 'Region'}
+      placeholder="Pick a region"
       clearable
       searchable
       maxDropdownHeight={280}
@@ -37,7 +37,7 @@ export function SelectRegion({
       disabled={isLoading}
       value={value ?? ''}
       onChange={onChange}
-      nothingFoundMessage="Không tìm thấy"
+      nothingFoundMessage="Not Found"
       filter={optionsFilter}
     />
   );

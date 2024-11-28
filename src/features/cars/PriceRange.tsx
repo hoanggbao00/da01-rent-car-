@@ -3,7 +3,7 @@ import { useFiltersContext } from '@/context/FiltersContext';
 import { Box, Flex, NumberInput, RangeSlider, Text } from '@mantine/core';
 
 const lowestPrice = 0;
-const highestPrice = 1000000000;
+const highestPrice = 50000000;
 
 interface Props {
 	showSlider?: boolean;
@@ -22,7 +22,7 @@ export const PriceRange = ({ showSlider = true }: Props) => {
 
 	return (
 		<>
-			{showSlider && <Text my={16}>Khoảng giá</Text>}
+			{showSlider && <Text my={16}>Price Range</Text>}
 			{showSlider && (
 				<RangeSlider
 					py='xl'
@@ -39,7 +39,7 @@ export const PriceRange = ({ showSlider = true }: Props) => {
 			)}
 			<Flex gap={8} mt={showSlider ? 0 : 8}>
 				<Box w={{ base: '100%', md: '150px' }}>
-					<Text size='xs'>Giá tối thiểu</Text>
+					<Text size='xs'>Lowest</Text>
 					<NumberInput
 						step={100000}
 						min={lowestPrice}
@@ -52,7 +52,7 @@ export const PriceRange = ({ showSlider = true }: Props) => {
 					/>
 				</Box>
 				<Box w={{ base: '100%', md: '150px' }}>
-					<Text size='xs'>Giá tối đa</Text>
+					<Text size='xs'>Highest</Text>
 					<NumberInput
 						step={100000}
 						min={10}

@@ -29,7 +29,7 @@ export const YearModel = ({ showSlider = true }: Props) => {
 
 	return (
 		<>
-			{showSlider && <Text my={16}>Năm sản xuất</Text>}
+			{showSlider && <Text my={16}>Year</Text>}
 			{showSlider && (
 				<RangeSlider
 					py='xl'
@@ -44,7 +44,7 @@ export const YearModel = ({ showSlider = true }: Props) => {
 			)}
 			{!showSlider && (
 				<Flex direction={'column'} w={{ base: '100%', md: '150px' }}>
-					<Text>Năm sản xuất</Text>
+					<Text>Year</Text>
 					<NumberInput
 						onChange={(e) => handleChange(e)}
 						defaultValue={new Date().getFullYear()}

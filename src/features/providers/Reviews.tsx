@@ -13,7 +13,7 @@ export const Reviews = ({ reviews }: Props) => {
 				my='lg'
 				label={
 					<Title order={3} className='text-default'>
-						Đánh giá ({reviews.length})
+						Reviews ({reviews.length})
 					</Title>
 				}
 			/>
@@ -26,7 +26,7 @@ export const Reviews = ({ reviews }: Props) => {
 			{reviews.length === 0 && (
 				<Card my='3rem'>
 					<Text fs='italic' ta='center'>
-						Chưa có đánh giá nào
+						No Reviews
 					</Text>
 				</Card>
 			)}

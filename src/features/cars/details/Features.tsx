@@ -42,7 +42,7 @@ export const Features = ({
 	return (
 		<>
 			<Title order={5} my='xs'>
-				Thông số
+				Features
 			</Title>
 			<Grid>
 				<Grid.Col
@@ -51,7 +51,7 @@ export const Features = ({
 				>
 					<Card className={classes.mainFeatures} withBorder radius={'md'}>
 						<IconUsers />
-						<Text size='xs'>Chỗ ngồi</Text>
+						<Text size='xs'>Seat</Text>
 						<Text fw='bold'>{seatingCapacity}</Text>
 					</Card>
 				</Grid.Col>
@@ -62,9 +62,9 @@ export const Features = ({
 				>
 					<Card className={classes.mainFeatures} withBorder radius={'md'}>
 						<IconManualGearbox />
-						<Text size='xs'>Loại cần số</Text>
+						<Text size='xs'>Transmission</Text>
 						<Text fw='bold'>
-							{transmission === 'manual' ? 'Số thủ công' : 'Số tự động'}
+							{transmission === 'manual' ? 'Manual' : 'Automatic'}
 						</Text>
 					</Card>
 				</Grid.Col>
@@ -75,8 +75,8 @@ export const Features = ({
 				>
 					<Card className={classes.mainFeatures} withBorder radius={'md'}>
 						<BsFuelPump size={24} />
-						<Text size='xs'>Loại xăng/dầu</Text>
-						<Text fw='bold'>{fuel?.label ?? 'Tất cả'}</Text>
+						<Text size='xs'>Fuel</Text>
+						<Text fw='bold'>{fuel?.label ?? 'All'}</Text>
 					</Card>
 				</Grid.Col>
 
@@ -86,7 +86,7 @@ export const Features = ({
 				>
 					<Card className={classes.mainFeatures} withBorder radius={'md'}>
 						<PiEngineBold size={24} />
-						<Text size='xs'>Dung tích máy</Text>
+						<Text size='xs'>Engine Capacity</Text>
 						<Text fw='bold'>{engineCapacity}</Text>
 					</Card>
 				</Grid.Col>
@@ -123,13 +123,13 @@ export const Features = ({
 				>
 					<Card withBorder>
 						<Flex gap='md' justify='space-between' align='center' my='md'>
-							<Text>Điều hòa</Text>
-							<Text>{acAvailable ? 'Có' : 'Không'}</Text>
+							<Text>AC Available</Text>
+							<Text>{acAvailable ? 'Yes' : 'None'}</Text>
 						</Flex>
 
 						<Flex gap='md' justify='space-between' align='center' my='md'>
-							<Text>Điều hòa hoạt động</Text>
-							<Text>{acWorking ? 'Có' : 'Không'}</Text>
+							<Text>AC Working</Text>
+							<Text>{acWorking ? 'Yes' : 'None'}</Text>
 						</Flex>
 					</Card>
 				</Grid.Col>
